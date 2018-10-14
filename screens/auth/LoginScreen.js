@@ -37,6 +37,7 @@ export default class LoginScreen extends React.Component {
                       />
                       <Text style={styles.errorTextStyle}>{this.state.error}</Text>
                       <Button onPress={this.onLoginPress.bind(this)} title="Log in" />
+                      <Button title="Register" onPress={() => this.props.navigation.navigate("Register")} />
 
               </View>
           );

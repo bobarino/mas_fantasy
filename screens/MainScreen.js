@@ -4,7 +4,7 @@ import routeConfig from '../config/routeConfig';
 
 export default class MainScreen extends React.Component {
     render() {
-        const { Main, ...routes } = routeConfig;
+        const { Main, Register, ...routes } = routeConfig;
         return (
             <ScrollView style={{ marginTop: 20 }}>
                 {Object.keys(routes).map(route => (
