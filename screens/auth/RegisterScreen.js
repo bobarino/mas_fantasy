@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Text, TextInput, Button, Alert } from 'react-native';
 import { NavigationActions } from 'react-navigation';
+import routeConfig from '../../config/routeConfig';
 import * as firebase from 'firebase';
+
 
 export default class RegisterScreen extends React.Component {
 
@@ -21,10 +23,11 @@ export default class RegisterScreen extends React.Component {
         }
 
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then(() => { }, (error) => { Alert.alert(error.message); });
+            .then(() => { this.props.navigation.navigate("Main") }, (error) => { Alert.alert(error.message); });
     }
-    
+
     render() {
+        const { ...routes } = routeConfig;
         return (
             <View style={{paddingTop:50, alignItems:"center"}}>
 

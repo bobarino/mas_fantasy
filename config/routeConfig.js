@@ -8,7 +8,8 @@ import RegisterScreen from '../screens/auth/RegisterScreen';
 
 export default {
 
-  Home: { screen: MainScreen },
+  Main: { screen: MainScreen },
+  Login: { screen: LoginScreen },
   Register: { screen: RegisterScreen },
   TeamStandings: { screen: TeamStandingsScreen },
   RecentMatches: { screen: RecentMatchesScreen },
