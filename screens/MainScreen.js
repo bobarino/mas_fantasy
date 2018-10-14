@@ -14,8 +14,8 @@ export default class MainScreen extends React.Component {
         const { currentUser } = this.state;
         const { Main, Register, Login, Loading, ...routes } = routeConfig;
         return (
-            <ScrollView style={{ marginTop: 20 }}>
-            <Text>Hi {currentUser && currentUser.email}!</Text>
+            <ScrollView style={{ marginTop: 30 }}>
+            <Text style={{fontWeight: "bold"}}>Hi {currentUser && currentUser.email}!</Text>
                 {Object.keys(routes).map(route => (
                     <Button
                         key={route}

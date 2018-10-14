@@ -5,6 +5,6 @@ import * as firebase from 'firebase';
 
 
 firebase.initializeApp(ApiKeys.FirebaseConfig);
-const stackRouterConfig = { initialRouteName: 'Login' };
+const stackRouterConfig = { initialRouteName: 'Loading' };
 const Navigator = StackNavigator(routeConfig, stackRouterConfig);
 export default Navigator;

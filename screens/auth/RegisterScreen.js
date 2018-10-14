@@ -27,7 +27,6 @@ export default class RegisterScreen extends React.Component {
     }
 
     render() {
-        const { ...routes } = routeConfig;
         return (
             <View style={{paddingTop:50, alignItems:"center"}}>
 
