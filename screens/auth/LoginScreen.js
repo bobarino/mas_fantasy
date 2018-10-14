@@ -25,6 +25,8 @@ export default class LoginScreen extends React.Component {
                           label='Email Address'
                           placeholder='you@domain.com'
                           value={this.state.email}
+                          keyboardType="email-address"
+                          autoCapitalize="none"
                           onChangeText={email => this.setState({ email })}
                       />
                       <TitledInput
