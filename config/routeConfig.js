@@ -5,6 +5,7 @@ import RecentMatchesScreen from '../screens/RecentMatchesScreen';
 import PlayerLookupScreen from '../screens/PlayerLookupScreen';
 import LogoutScreen from '../screens/auth/LogoutScreen';
 import RegisterScreen from '../screens/auth/RegisterScreen';
+import LoadingScreen from '../screens/auth/LoadingScreen';
 
 export default {
 
@@ -14,6 +15,7 @@ export default {
   TeamStandings: { screen: TeamStandingsScreen },
   RecentMatches: { screen: RecentMatchesScreen },
   PlayerLookup: { screen: PlayerLookupScreen },
-  Logout: { screen: LogoutScreen }
+  Logout: { screen: LogoutScreen },
+  Loading: { screen: LoadingScreen }
 
 };
