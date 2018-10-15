@@ -7,7 +7,8 @@ export default class CreateLeagueScreen extends React.Component {
       this.state = {
           leagueName: "",
           numTeams: "",
-          numPlayers: ""
+          numPlayers: "",
+          password: ""
       };
   }
   render() {
