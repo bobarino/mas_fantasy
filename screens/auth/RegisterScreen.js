@@ -23,14 +23,15 @@ export default class RegisterScreen extends React.Component {
         }
 
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then(() => { this.props.navigation.navigate("Main") }, (error) => { Alert.alert(error.message); });
+            .then(() => { this.props.navigation.navigate('Main') }, (error) => { Alert.alert(error.message); });
     }
 
     render() {
         return (
             <View style={{paddingTop:50, alignItems:"center"}}>
 
-                <Text>Signup</Text>
+                <Text>Sign Up</Text>
+                <View style={{paddingTop:10}} />
 
                 <TextInput style={{width: 200, height: 40, borderWidth: 1}}
                     value={this.state.email}
@@ -62,6 +63,8 @@ export default class RegisterScreen extends React.Component {
                     autoCapitalize="none"
                     autoCorrect={false}
                 />
+
+                <View style={{paddingTop:10}} />
 
                 <Button title="Register" onPress={this.onSignupPress} />
             </View>
