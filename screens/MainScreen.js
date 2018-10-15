@@ -14,26 +14,10 @@ export default class MainScreen extends React.Component {
         const { currentUser } = this.state;
         const { Main, Register, Login, Loading, ...routes } = routeConfig;
         return (
-            <ScrollView style={{ marginTop: 20, backgroundColor: '#484f4f'}}>
+            <ScrollView style={{backgroundColor: '#484f4f'}}>
               <Text style={{fontWeight: "bold", color: 'white', padding: 10}}>Hi {currentUser && currentUser.email}!</Text>
 
               <View style={{paddingTop:10}} />
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => this.props.navigation.navigate('CreateLeague')}
-                >
-                <Text style={styles.text}> Create League </Text>
-              </TouchableOpacity>
-
-              <View style={{paddingTop:3}} />
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => this.props.navigation.navigate('JoinLeague')}
-                >
-                <Text style={styles.text}> Join League </Text>
-              </TouchableOpacity>
-
-              <View style={{paddingTop:3}} />
               <TouchableOpacity
                 style={styles.button}
                 onPress={() => this.props.navigation.navigate('TeamStandings')}
@@ -55,6 +39,30 @@ export default class MainScreen extends React.Component {
                 onPress={() => this.props.navigation.navigate('PlayerLookup')}
                 >
                 <Text style={styles.text}> Player Lookup </Text>
+              </TouchableOpacity>
+
+              <View style={{paddingTop:3}} />
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => this.props.navigation.navigate('MyLeauges')}
+                >
+                <Text style={styles.text}> My Leagues </Text>
+              </TouchableOpacity>
+
+              <View style={{paddingTop:3}} />
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => this.props.navigation.navigate('CreateLeague')}
+                >
+                <Text style={styles.text}> Create League </Text>
+              </TouchableOpacity>
+
+              <View style={{paddingTop:3}} />
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => this.props.navigation.navigate('JoinLeague')}
+                >
+                <Text style={styles.text}> Join League </Text>
               </TouchableOpacity>
 
               <View style={{paddingTop:3}} />

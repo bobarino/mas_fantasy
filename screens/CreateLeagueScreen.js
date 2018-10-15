@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native';
 import routeConfig from '../config/routeConfig';
 export default class CreateLeagueScreen extends React.Component {
   constructor(props) {
@@ -13,10 +13,11 @@ export default class CreateLeagueScreen extends React.Component {
   }
   render() {
       return (
+        <ScrollView style={{ backgroundColor: '#484f4f' }}>
           <View style={{paddingTop:50, alignItems:"center"}}>
 
-              <Text>League Name</Text>
-              <TextInput style={{width: 200, height: 40, borderWidth: 1}}
+              <Text style={{fontWeight: "bold", color: 'white', padding: 10, fontSize: 20}}>League Name</Text>
+              <TextInput style={{width: 200, height: 40, borderWidth: 1, backgroundColor: 'white'}}
                   value={this.state.email}
                   onChangeText={(text) => { this.setState({leagueName: text}) }}
                   placeholder="League Name"
@@ -24,34 +25,24 @@ export default class CreateLeagueScreen extends React.Component {
               />
 
               <View style={{paddingTop:10}} />
-              <Text>Number of Teams</Text>
-              <TextInput style={{width: 200, height: 40, borderWidth: 1}}
+              <Text style={{fontWeight: "bold", color: 'white', padding: 10, fontSize: 20}}>Number of Teams</Text>
+              <TextInput style={{width: 200, height: 40, borderWidth: 1, backgroundColor: 'white'}}
                   value={this.state.email}
                   onChangeText={(text) => { this.setState({numTeams: text}) }}
                   placeholder="# of teams"
               />
 
               <View style={{paddingTop:10}} />
-              <Text>Number of Players</Text>
-              <TextInput style={{width: 200, height: 40, borderWidth: 1}}
+              <Text style={{fontWeight: "bold", color: 'white', padding: 10, fontSize: 20}}>Number of Players</Text>
+              <TextInput style={{width: 200, height: 40, borderWidth: 1, backgroundColor: 'white'}}
                   value={this.state.email}
                   onChangeText={(text) => { this.setState({numPlayers: text}) }}
                   placeholder="# of players per team"
               />
 
-              <View style={{paddingTop:10}} />
-              <Text>Make League Passowrd</Text>
-              <TextInput style={{width: 200, height: 40, borderWidth: 1}}
-                  value={this.state.password}
-                  onChangeText={(text) => { this.setState({password: text}) }}
-                  placeholder="Password"
-                  secureTextEntry={true}
-                  autoCapitalize="none"
-                  autoCorrect={false}
-              />
-
               <Button title="Create League" onPress={() => this.props.navigation.navigate("Main")} />
           </View>
+        </ScrollView>
       );
   }
 }

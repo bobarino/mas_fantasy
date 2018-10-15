@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import * as firebase from 'firebase';
 export default class TeamStandingsScreen extends React.Component {
   state = { teams: undefined }
@@ -21,9 +21,11 @@ export default class TeamStandingsScreen extends React.Component {
     const { teams } = this.state;
     console.log(teams);
     return (
-      <ScrollView style={{ marginTop: 20 }}>
-        <Text>This is the Team Standings screen!</Text>
-      </ ScrollView>
+      <Image
+        style={{flex:1, height: undefined, width: undefined}}
+        source={require('../assets/TeamStandings.png')}
+        resizeMode="contain"
+      />
     );
   }
 }
