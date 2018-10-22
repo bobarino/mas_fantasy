@@ -14,7 +14,7 @@ componentDidMount() {
   var playersRef = firebase.database().ref('/players');
   var playersList = [];
   playersRef.once('value').then(snapshot => {
-    var totalPlayers = snapshot.numChildren(); //get number of online users
+    var totalPlayers = snapshot.numChildren();
     var indexList = [];
     var randomNr = Math.random() * totalPlayers;
     var playerIndex = parseInt(randomNr, 10);
@@ -30,7 +30,7 @@ componentDidMount() {
     snapshot.forEach(item => {
       if(indexList.indexOf(currentIndex) != -1){
         playersList.push(item.val());
-        this.writeUserData(item.val().id, item.val().Name, item.val().Team);
+        this.writeUserData(firebase.auth().currentUser.uid, item.val().id, item.val().Name, item.val().Team);
       }
       currentIndex++;
     });
@@ -38,8 +38,8 @@ componentDidMount() {
   })
 }
 
-writeUserData(playerID, name, team) {
-  var teamRef = firebase.database().ref('/league/1/users/0/players/' + playerID).set({
+writeUserData(userID, playerID, name, team) {
+  var teamRef = firebase.database().ref('/league/1/users/' + userID + '/players/' + playerID).set({
     name: name,
     team: team
   });
