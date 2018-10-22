@@ -73,6 +73,14 @@ export default class MainScreen extends React.Component {
                 <Text style={styles.text}> Logout </Text>
               </TouchableOpacity>
 
+              <View style={{paddingTop:3}} />
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => this.props.navigation.navigate('Drafting')}
+                >
+                <Text style={styles.text}> Draft </Text>
+              </TouchableOpacity>
+
             </ScrollView>
         );
     }
