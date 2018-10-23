@@ -1,13 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native';
-import routeConfig from '../config/routeConfig';
+import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity } from 'react-native';
 export default class JoinLeague extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
-          leagueName: "",
-          password: ""
+          leagueName: ""
       };
+  }
+
+  handleJoin(leagueName) {
+    this.props.navigation.navigate('Drafting', { leagueName });
   }
   render() {
       return (
@@ -22,9 +24,27 @@ export default class JoinLeague extends React.Component {
                   autoCorrect={false}
               />
 
-              <Button title="Join League" onPress={() => this.props.navigation.navigate("Main")} />
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => this.handleJoin(this.state.leagueName)}
+              >
+                <Text style={styles.buttonText}> Join League </Text>
+              </TouchableOpacity>
           </View>
         </ScrollView>
       );
   }
 }
+
+const styles = StyleSheet.create ({
+   buttonText: {
+     color: 'white',
+     fontSize: 20
+   },
+   button: {
+     alignItems: 'center',
+     backgroundColor: '#034f84',
+     padding: 20,
+     marginTop: 15
+   }
+})

@@ -41,7 +41,7 @@ componentDidMount() {
     //Write the new user to the league and the players that were autodrafted
     var currentIndex = 0;
     const userID = firebase.auth().currentUser.uid;
-    //Delete players that might already exist there
+    //Delete players that might already exist there- Don't need implementation for right now
     //var playerDelRef = firebase.database().ref('/league/' + league + '/users/' + userID + '/players').remove();
     snapshot.forEach(item => {
       if(indexList.indexOf(currentIndex) != -1){
