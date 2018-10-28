@@ -1,7 +1,45 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import { StyleSheet, Text, View, TextInput, Button, ScrollView, Image, TouchableHighlight, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, ScrollView, Image, TouchableHighlight, TouchableOpacity, Alert, FlatList, SafeAreaView } from 'react-native';
 import { Table, Row, TableWrapper, Rows, Cell } from 'react-native-table-component';
+import  SearchableDropdown from 'react-native-searchable-dropdown';
+import {List, ListItem, SearchBar} from 'react-native-elements';
+
+
+var  items  = [
+    {
+        id: 1,
+        name: 'Joe Richards'
+    },
+    {
+        id: 2,
+        name: 'Eric Miner'
+    },
+    {
+        id: 3,
+        name: 'Francis Breton'
+    },
+    {
+        id: 4,
+        name: 'Miguel Goderre'
+    },
+    {
+        id: 5,
+        name: 'Simon Charette'
+    },
+    {
+        id: 6,
+        name: 'Shane Earley'
+    },
+    {
+        id: 7,
+        name: 'Go'
+    },
+    {
+        id: 8,
+        name: 'Swift'
+    },
+];
 export default class PlayerLookupScreen extends React.Component {
   constructor(props) {
       super(props);
@@ -17,8 +55,41 @@ export default class PlayerLookupScreen extends React.Component {
             ['Simon Charette', 'Montreal Royal', '9'],
             ['Shane Earley', 'San Jose Spiders', '16'],
           ],
-        
-      };
+          items: [
+              {
+                  id: 1,
+                  name: 'Javascript'
+              },
+              {
+                  id: 2,
+                  name: 'Java'
+              },
+              {
+                  id: 3,
+                  name: 'Ruby'
+              },
+              {
+                  id: 4,
+                  name: 'React Native'
+              },
+              {
+                  id: 5,
+                  name: 'PHP'
+              },
+              {
+                  id: 6,
+                  name: 'Python'
+              },
+              {
+                  id: 7,
+                  name: 'Go'
+              },
+              {
+                  id: 8,
+                  name: 'Swift'
+              },
+          ],
+      }
   }
   _alertIndex(index) {
     Alert.alert(`This is row ${index + 1}`);
@@ -66,6 +137,38 @@ export default class PlayerLookupScreen extends React.Component {
               }
             </Table>
           </View>
+
+        <SearchableDropdown
+            
+            onItemSelect={(item) =>  alert(JSON.stringify(item))}
+            containerStyle={{
+                padding: 5
+            }}
+            textInputStyle={{
+                padding: 12,
+                borderWidth: 1,
+                borderColor: '#ccc',
+                borderRadius: 5
+            }}
+            itemStyle={{
+                padding: 10,
+                marginTop: 2,
+                backgroundColor: '#ddd',
+                borderColor: '#bbb',
+                borderWidth: 1,
+                borderRadius:5
+            }}
+            itemTextStyle={{
+            color: '#222'
+            }}
+            itemsContainerStyle={{
+                maxHeight: 140
+            }}
+            items={items}
+            defaultIndex={2}
+            placeholder="Placeholder."
+            resetValue={false}
+            underlineColorAndroid='transparent' />
 
         <TouchableHighlight onPress={() => this.props.navigation.navigate("PlayerScreen")}>
         <Image
