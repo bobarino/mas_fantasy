@@ -40,7 +40,6 @@ export default class CreateLeagueScreen extends React.Component {
 
               <Text style={{fontWeight: "bold", color: 'white', padding: 10, fontSize: 20}}>League Name</Text>
               <TextInput style={{width: 200, height: 40, borderWidth: 1, backgroundColor: 'white'}}
-                  value={this.state.email}
                   onChangeText={(text) => { this.setState({leagueName: text}) }}
                   placeholder="League Name"
                   autoCorrect={false}
