@@ -31,6 +31,7 @@ export default class PlayerLookupScreen extends React.Component {
             { id: 11, name: 'Alexandre  Fall', team: 'San Jose Spiders', points: '16'},
             { id: 12, name: 'Alex Liu', team: 'San Jose Spiders', points: '16'},
             { id: 16, name: 'Eric Miner', team: 'San Jose Spiders', points: '16'},
+            { id: 17, name: 'Daniel Sperling', team: 'Atl Hustle', points: '16'},
           ],
           searchTerm: "",
           searchAttribute: "name",
@@ -82,7 +83,9 @@ export default class PlayerLookupScreen extends React.Component {
               searchAttribute={searchAttribute}
               ignoreCase={ignoreCase}
               renderItem={({ item }) => (
-                <Text style={styles.listItem}>{item.name}   {item.team}</Text>
+                <TouchableHighlight onPress={() => this.props.navigation.navigate("PlayerScreen")}>
+                  <Text style={styles.listItem}>{item.name}   {item.team}</Text>
+                </TouchableHighlight>
               )}
               keyExtractor={item => item.id}
             />
