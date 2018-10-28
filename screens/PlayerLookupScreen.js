@@ -48,8 +48,15 @@ export default class PlayerLookupScreen extends React.Component {
   render() {
     const { data, searchTerm, searchAttribute, ignoreCase } = this.state;
     return (
+
       <View style={{ flex: 1, backgroundColor: '#484f4f' }}>
         <View style={styles.pageContainer}>
+          <View style={{paddingTop:50, alignItems:"center"}}>
+
+            <Text style={{fontWeight: "bold", color: 'white', padding: 10, fontSize: 20}}>Lookup Player</Text>
+            <View style={{paddingTop:10}} />
+            <View style={{paddingTop:10}} />
+          </View>
           <View style={styles.searchInputs}>
               <TextInput
                 style={styles.search}
@@ -91,7 +98,7 @@ export default class PlayerLookupScreen extends React.Component {
 const styles = StyleSheet.create({
   
   
-  pageContainer: { padding: 10, flex: 1, backgroundColor: '#fff' },
+  pageContainer: { padding: 10, flex: 1, backgroundColor: '#484f4f' },
   searchInputs: { flexDirection: "row" },
   search: { flex: 8, marginBottom: 20, borderColor: "#D44744", borderBottomWidth: 3, padding: 10 },
   listItem: { padding: 10, borderColor: "#f4cfce", borderWidth: 1, borderRadius: 10, margin: 2 },
