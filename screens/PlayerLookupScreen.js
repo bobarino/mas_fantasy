@@ -1,9 +1,6 @@
 import React from 'react';
-import PropTypes from "prop-types";
-import { StyleSheet, Text, View, TextInput, Button, ScrollView, Image, TouchableHighlight, TouchableOpacity, Alert, FlatList, SafeAreaView } from 'react-native';
-import { Table, Row, TableWrapper, Rows, Cell } from 'react-native-table-component';
-import  SearchableDropdown from 'react-native-searchable-dropdown';
-import {List, ListItem, SearchBar} from 'react-native-elements';
+import { StyleSheet, Text, View, TextInput, Button, ScrollView, Image, TouchableHighlight } from 'react-native';
+import { SearchableFlatList } from "react-native-searchable-list";
 
 
 var  items  = [
@@ -55,120 +52,52 @@ export default class PlayerLookupScreen extends React.Component {
             ['Simon Charette', 'Montreal Royal', '9'],
             ['Shane Earley', 'San Jose Spiders', '16'],
           ],
-          items: [
-              {
-                  id: 1,
-                  name: 'Javascript'
-              },
-              {
-                  id: 2,
-                  name: 'Java'
-              },
-              {
-                  id: 3,
-                  name: 'Ruby'
-              },
-              {
-                  id: 4,
-                  name: 'React Native'
-              },
-              {
-                  id: 5,
-                  name: 'PHP'
-              },
-              {
-                  id: 6,
-                  name: 'Python'
-              },
-              {
-                  id: 7,
-                  name: 'Go'
-              },
-              {
-                  id: 8,
-                  name: 'Swift'
-              },
+          data: [
+            { id: 1, name: 'Joe Richards', team: 'DC Breeze', points: '13'},
+            { id: 2, name: 'Eric Miner', team: 'DC Breeze', points: '15'},
+            { id: 3, name: 'Francis Breton', team: 'Montreal Royal', points: '13'},
+            { id: 4, name: 'Miguel Goderre', team: 'Montreal Royal', points: '10'},
+            { id: 5, name: 'Simon Charette', team: 'Montreal Royal', points: '9'},
+            { id: 6, name: 'Shane Earley', team: 'San Jose Spiders', points: '16'},
+            { id: 7, name: 'Mitchell Bennett', team: 'San Jose Spiders', points: '16'},
+            { id: 8, name: 'Dylan Tunnell', team: 'San Jose Spiders', points: '16'},
+            { id: 9, name: 'Kurt Gibson', team: 'San Jose Spiders', points: '16'},
+            { id: 10, name: 'Michael Egan', team: 'San Jose Spiders', points: '16'},
+            { id: 11, name: 'Alexandre  Fall', team: 'San Jose Spiders', points: '16'},
+            { id: 12, name: 'Alex Liu', team: 'San Jose Spiders', points: '16'},
+            { id: 16, name: 'Eric Miner', team: 'San Jose Spiders', points: '16'},
           ],
+          searchTerm: "",
+          searchAttribute: "name",
+          ignoreCase: true,
       }
   }
+  
   _alertIndex(index) {
     Alert.alert(`This is row ${index + 1}`);
   }
  
 
   render() {
-    const state = this.state;
-    const element = (data, index) => (
-      <TouchableOpacity onPress={() => this._alertIndex(index)}>
-        <View style={styles.btn}>
-          <Text style={styles.btnText}>button</Text>
-        </View>
-      </TouchableOpacity>
-    );
+    const { data, searchTerm, searchAttribute, ignoreCase } = this.state;
     return (
       <ScrollView style={{ backgroundColor: '#484f4f' }}>
         <View style={{paddingTop:50, alignItems:"center"}}>
 
             <Text style={{fontWeight: "bold", color: 'white', padding: 10, fontSize: 20}}>Lookup Player</Text>
             <View style={{paddingTop:10}} />
-            <TextInput style={{width: 200, height: 40, borderWidth: 1, backgroundColor: 'white'}}
-                value={this.state.email}
-                onChangeText={(text) => { this.setState({playerName: text}) }}
-                placeholder="Player Name"
-                autoCorrect={false}
-            />
             <View style={{paddingTop:10}} />
-
-            <Button title="Find Player" onPress={() => this.props.navigation.navigate("Main")} />
-          </View>
-          <View style={styles.container}>
-            <Table borderStyle={{borderColor: 'transparent'}}>
-              <Row data={state.tableHead} style={styles.head} textStyle={styles.text}/>
-              {
-                state.tableData.map((rowData, index) => (
-                  <TableWrapper key={index} style={[styles.row, index%2 && {backgroundColor: '#F7F6E7'}]}>
-                    {
-                      rowData.map((cellData, cellIndex) => (
-                        <Cell key={cellIndex} data={cellIndex === 3 ? element(cellData, index) : cellData} textStyle={styles.text}/>
-                      ))
-                    }
-                  </TableWrapper>
-                ))
-              }
-            </Table>
           </View>
 
-        <SearchableDropdown
-            
-            onItemSelect={(item) =>  alert(JSON.stringify(item))}
-            containerStyle={{
-                padding: 5
-            }}
-            textInputStyle={{
-                padding: 12,
-                borderWidth: 1,
-                borderColor: '#ccc',
-                borderRadius: 5
-            }}
-            itemStyle={{
-                padding: 10,
-                marginTop: 2,
-                backgroundColor: '#ddd',
-                borderColor: '#bbb',
-                borderWidth: 1,
-                borderRadius:5
-            }}
-            itemTextStyle={{
-            color: '#222'
-            }}
-            itemsContainerStyle={{
-                maxHeight: 140
-            }}
-            items={items}
-            defaultIndex={2}
-            placeholder="Placeholder."
-            resetValue={false}
-            underlineColorAndroid='transparent' />
+        <TextInput
+          style={styles.search} placeholder={"Enter Player Name"}
+          onChangeText={searchTerm => this.setState({ searchTerm })} />
+     
+        <SearchableFlatList 
+          style={styles.list} data={data} searchTerm={searchTerm}
+          searchAttribute={searchAttribute} ignoreCase={ignoreCase}
+          renderItem={({ item }) => ( <Text style={styles.listItem}>{item.name}</Text> )}
+          keyExtractor={item => item.id} />
 
         <TouchableHighlight onPress={() => this.props.navigation.navigate("PlayerScreen")}>
         <Image
@@ -189,7 +118,8 @@ const styles = StyleSheet.create({
   text: { margin: 6 },
   row: { flexDirection: 'row', backgroundColor: '#FFF1C1' },
   btn: { width: 58, height: 18, backgroundColor: '#78B7BB',  borderRadius: 2 },
-  btnText: { textAlign: 'center', color: '#fff' }
+  btnText: { textAlign: 'center', color: '#fff' },
+  list: {textAlign:'center', backgroundColor: '#FFF1C1'}
 });
 
 
