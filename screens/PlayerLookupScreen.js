@@ -1,48 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button, ScrollView, Image, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, ScrollView, Image, TouchableHighlight, TouchableOpacity, Switch, } from 'react-native';
 import { SearchableFlatList } from "react-native-searchable-list";
 
 
-var  items  = [
-    {
-        id: 1,
-        name: 'Joe Richards'
-    },
-    {
-        id: 2,
-        name: 'Eric Miner'
-    },
-    {
-        id: 3,
-        name: 'Francis Breton'
-    },
-    {
-        id: 4,
-        name: 'Miguel Goderre'
-    },
-    {
-        id: 5,
-        name: 'Simon Charette'
-    },
-    {
-        id: 6,
-        name: 'Shane Earley'
-    },
-    {
-        id: 7,
-        name: 'Go'
-    },
-    {
-        id: 8,
-        name: 'Swift'
-    },
-];
 export default class PlayerLookupScreen extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
           playerName: "",
-          resultsTable: "",
           tableHead: ['Name', 'Team', 'Total Points'],
           tableData: [
             ['Joe Richards', 'DC Breeze', '13'],
@@ -72,54 +37,69 @@ export default class PlayerLookupScreen extends React.Component {
           ignoreCase: true,
       }
   }
-  
-  _alertIndex(index) {
-    Alert.alert(`This is row ${index + 1}`);
+  handleTeamSearch() {
+    this.setState({searchAttribute: "team"})
   }
- 
+  handleNameSearch() {
+    this.setState({searchAttribute: "name"})
+  }
+  
 
   render() {
     const { data, searchTerm, searchAttribute, ignoreCase } = this.state;
     return (
-      <ScrollView style={{ backgroundColor: '#484f4f' }}>
-        <View style={{paddingTop:50, alignItems:"center"}}>
-
-            <Text style={{fontWeight: "bold", color: 'white', padding: 10, fontSize: 20}}>Lookup Player</Text>
-            <View style={{paddingTop:10}} />
-            <View style={{paddingTop:10}} />
+      <View style={{ flex: 1, backgroundColor: '#484f4f' }}>
+        <View style={styles.pageContainer}>
+          <View style={styles.searchInputs}>
+              <TextInput
+                style={styles.search}
+                placeholder={"Enter Player Name"}
+                onChangeText={searchTerm => this.setState({ searchTerm })}
+              />
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => this.handleNameSearch() }>
+                <Text style={styles.buttonText}> Search Players </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => this.handleTeamSearch()}>
+                <Text style={styles.buttonText}> Search Teams </Text>
+              </TouchableOpacity>
           </View>
+          <ScrollView>
+            <SearchableFlatList
+              style={styles.list}
+              data={data}
+              searchTerm={searchTerm}
+              searchAttribute={searchAttribute}
+              ignoreCase={ignoreCase}
+              renderItem={({ item }) => (
+                <Text style={styles.listItem}>{item.name}   {item.team}</Text>
+              )}
+              keyExtractor={item => item.id}
+            />
+          </ScrollView>
+        </View>
+      </View>
 
-        <TextInput
-          style={styles.search} placeholder={"Enter Player Name"}
-          onChangeText={searchTerm => this.setState({ searchTerm })} />
-     
-        <SearchableFlatList 
-          style={styles.list} data={data} searchTerm={searchTerm}
-          searchAttribute={searchAttribute} ignoreCase={ignoreCase}
-          renderItem={({ item }) => ( <Text style={styles.listItem}>{item.name}</Text> )}
-          keyExtractor={item => item.id} />
-
-        <TouchableHighlight onPress={() => this.props.navigation.navigate("PlayerScreen")}>
-        <Image
-          style={{flex:1, height:500, width: undefined}}
-          source={require('../assets/PlayerList.png')}
-          resizeMode="contain"
-        />
-        </TouchableHighlight>
-      </ScrollView>
     );
   }
 
 }
  
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
-  head: { height: 40, backgroundColor: '#808B97' },
-  text: { margin: 6 },
-  row: { flexDirection: 'row', backgroundColor: '#FFF1C1' },
-  btn: { width: 58, height: 18, backgroundColor: '#78B7BB',  borderRadius: 2 },
-  btnText: { textAlign: 'center', color: '#fff' },
-  list: {textAlign:'center', backgroundColor: '#FFF1C1'}
+  
+  
+  pageContainer: { padding: 10, flex: 1, backgroundColor: '#fff' },
+  searchInputs: { flexDirection: "row" },
+  search: { flex: 8, marginBottom: 20, borderColor: "#D44744", borderBottomWidth: 3, padding: 10 },
+  listItem: { padding: 10, borderColor: "#f4cfce", borderWidth: 1, borderRadius: 10, margin: 2 },
+  info: { padding: 10, marginTop: 20, borderColor: "#f4cfce", borderWidth: 1 },
+  row: { flexDirection: "row", backgroundColor: "#f4cfce" },
+  row1: { flexDirection: "row" },
+  prop: { flex: 1, padding: 10 },
+  val: { borderLeftWidth: 1, alignSelf: "center", flex: 2 },
 });
 
 
