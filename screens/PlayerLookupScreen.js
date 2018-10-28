@@ -107,7 +107,8 @@ const styles = StyleSheet.create({
   row1: { flexDirection: "row" },
   prop: { flex: 1, padding: 10 },
   val: { borderLeftWidth: 1, alignSelf: "center", flex: 2 },
-  button: {borderColor: "#D44744",}
+  button: {borderColor: "#722e2c", height: 50, width: 60, backgroundColor: '#D44744', alignItems: 'center'},
+  buttonText: {alignItems: 'center'},
 });
 
 
