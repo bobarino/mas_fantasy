@@ -3,6 +3,12 @@ import { ScrollView, Button, Text, TouchableOpacity, StyleSheet, View } from 're
 
 import routeConfig from '../config/routeConfig';
 import * as firebase from 'firebase';
+import {
+  AdMobBanner,
+  AdMobInterstitial,
+  PublisherBanner,
+  AdMobRewarded
+} from 'expo';
 
 export default class MainScreen extends React.Component {
   state = { currentUser: null };
@@ -15,6 +21,7 @@ export default class MainScreen extends React.Component {
         const { currentUser } = this.state;
         const { Main, Register, Login, Loading, ...routes } = routeConfig;
         return (
+          <View style={styles.container}>
             <ScrollView style={{backgroundColor: '#484f4f'}}>
               <Text style={{fontWeight: "bold", color: 'white', padding: 10}}>Hi {currentUser && currentUser.email}!</Text>
 
@@ -75,26 +82,31 @@ export default class MainScreen extends React.Component {
               </TouchableOpacity>
 
             </ScrollView>
+            <AdMobBanner
+              style={styles.bottomBanner}
+              bannerSize="fullBanner"
+              adUnitID="ca-app-pub-3940256099942544/6300978111"
+              // Test ID, Replace with your-admob-unit-id
+              testDeviceID="EMULATOR"
+              didFailToReceiveAdWithError={this.bannerError}
+            />
+          </View>
         );
     }
 }
 const styles = StyleSheet.create({
+  bottomBanner: {
+    position: 'absolute',
+    bottom: 0
+  },
   container: {
     flex: 1,
-    justifyContent: 'center',
-    paddingHorizontal: 10
+    justifyContent: "center"
   },
   button: {
     alignItems: 'center',
     backgroundColor: '#034f84',
     padding: 20
-  },
-  countContainer: {
-    alignItems: 'center',
-    padding: 10
-  },
-  countText: {
-    color: '#FF00FF'
   },
   text: {
     color: 'white',
