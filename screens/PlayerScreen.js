@@ -13,8 +13,8 @@ export default class RecentMatchesScreen extends React.Component {
 			    <View style={{ flex: 1, flexDirection: "column"}}>
 				    <View style={{ flex: 1, flexDirection: "column", borderColor: "#ffffff", borderWidth: 2, padding: 5}}>
 		      			<Text style={{ fontWeight: "bold", color: 'white', fontSize: 25, textAlign: 'left'}}>DANIEL SPERLING</Text>
-		     			<Text style={ styles.subtitleText}>Atlanta Hustle</Text>
-		     			<Text style={ styles.subtitleText}>#00</Text>
+		     			<Text style={ styles.subtitleText }> Atlanta Hustle </Text>
+		     			<Text style={ styles.subtitleText }> #00 </Text>
 	      			</View>
 	      		    <View style={{ flex: 1, backgroundColor: '6ced68', flexDirection: "column", borderColor: "#ffffff", borderWidth: 2, maxHeight: 35, padding: 3, alignItems: 'flex-start'}}>
 	      				<Text style={{fontWeight: "bold", color: 'white', fontSize: 18, textAlign: 'left'}}>PERSONAL STATS</Text>
@@ -24,8 +24,10 @@ export default class RecentMatchesScreen extends React.Component {
 	      		</View>
       		</View>
 		    <View style={styles.pageContainer}>
-		 
 		      <ScrollView>
+		      	<View style={{ flex: 1, flexDirection: "column", borderColor: "#ffffff", borderWidth: 2, padding: 5}}>
+		      		<Text style={{color: 'white', fontSize: 18, textAlign: 'left'}}>Test </Text>
+		      	</View>
 		      </ScrollView>
 		    </View>
 		    
