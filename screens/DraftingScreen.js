@@ -51,6 +51,7 @@ componentDidMount() {
       currentIndex++;
     });
     this.setState({ players: playersList })
+    this.updateUserLeagues(this.state.leagueName, userID)
   })
 }
 
@@ -58,6 +59,12 @@ componentDidMount() {
     var playerRef = firebase.database().ref('/league/' + leagueName + '/users/' + userID + '/players/' + playerID).set({
       name: name,
       team: team
+    });
+  }
+
+  updateUserLeagues(leagueName, userID) {
+    var userRef = firebase.database().ref('/users/' + userID + "/leagues/" + leagueName).set({
+      name: leagueName
     });
   }
 

@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, ImageBackground, Button } from 'react-native';
 import { NavigationActions } from 'react-navigation';
-import { TitledInput } from '../../constants/TitledInput';
+//import { TitledInput } from '../../constants/TitledInput';
 import routeConfig from '../../config/routeConfig';
 import * as firebase from 'firebase';
 export default class LoginScreen extends React.Component {
@@ -20,8 +20,13 @@ export default class LoginScreen extends React.Component {
       }
       render() {
           return (
-              <View>
-                      <TitledInput
+              <ImageBackground
+              style={{flex:1, height: undefined, width: undefined}}
+                source={require('../../assets/LoginPageBackground.png')}
+                imageStyle={{resizeMode: 'stretch'}}
+              >
+              <View style={{paddingTop:300, alignItems:"center"}}>
+                      <TextInput style={{width: 200, height: 40, borderWidth: 1, backgroundColor: "white"}}
                           label='Email Address'
                           placeholder='you@domain.com'
                           value={this.state.email}
@@ -29,7 +34,10 @@ export default class LoginScreen extends React.Component {
                           autoCapitalize="none"
                           onChangeText={email => this.setState({ email })}
                       />
-                      <TitledInput
+
+                      <View style={{paddingTop:10}} />
+
+                      <TextInput style={{width: 200, height: 40, borderWidth: 1, backgroundColor: "white"}}
                           label='Password'
                           autoCorrect={false}
                           placeholder='*******'
@@ -38,18 +46,40 @@ export default class LoginScreen extends React.Component {
                           onChangeText={password => this.setState({ password })}
                       />
                       <Text style={styles.errorTextStyle}>{this.state.error}</Text>
-                      <Button onPress={this.onLoginPress.bind(this)} title="Log in" />
+                      <TouchableOpacity
+                        style={styles.button}
+                        onPress={() => this.onLoginPress()}
+                      >
+                        <Text style={styles.buttonText}> Log In </Text>
+                      </TouchableOpacity>
+                      <View style={{paddingTop:165}} />
                       <Button title="Dont have an account? Sign Up." onPress={() => this.props.navigation.navigate("Register")} />
 
               </View>
+              </ImageBackground>
           );
       }
   }
   const styles = {
-      errorTextStyle: {
-          color: '#E64A19',
-          alignSelf: 'center',
-          paddingTop: 10,
-          paddingBottom: 10
-      }
+    errorTextStyle: {
+        color: '#E64A19',
+        alignSelf: 'center',
+        paddingTop: 10,
+        paddingBottom: 10
+    },
+    backgroundImage: {
+      flex: 1,
+      width: null,
+      height: null,
+      resizeMode: 'cover'
+    },
+    buttonText: {
+      color: 'white',
+      fontSize: 20
+    },
+    button: {
+      alignItems: 'center',
+      backgroundColor: 'green',
+      padding: 20
+    }
   };

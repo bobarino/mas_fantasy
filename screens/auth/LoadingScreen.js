@@ -7,7 +7,7 @@ export default class LoadingScreen extends React.Component {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         var usersRef = firebase.database().ref('/users/' + user.uid);
-        usersRef.set({
+        usersRef.update({
           email: user.email
         });
       }
