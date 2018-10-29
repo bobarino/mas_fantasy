@@ -17,69 +17,20 @@ export default class MainScreen extends React.Component {
     const { currentUser } = firebase.auth();
     this.setState({ currentUser });
   }
-    render() {
-        const { currentUser } = this.state;
-        const { Main, Register, Login, Loading, ...routes } = routeConfig;
-        return (
-          <View style={styles.container}>
-            <ScrollView style={{backgroundColor: '#484f4f'}}>
-              <Text style={{fontWeight: "bold", color: 'white', padding: 10}}>Hi {currentUser && currentUser.email}!</Text>
+  render() {
+      const { currentUser } = this.state;
+      const { Main, Register, Login, Loading, ...routes } = routeConfig;
+      return (
+              <View style={styles.container}>
+              <ScrollView style={{backgroundColor: '#484f4f'}}>
 
-              <View style={{paddingTop:10}} />
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => this.props.navigation.navigate('TeamStandings')}
-                >
-                <Text style={styles.text}> Team Standings </Text>
-              </TouchableOpacity>
-
-              <View style={{paddingTop:3}} />
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => this.props.navigation.navigate('RecentMatches')}
-                >
-                <Text style={styles.text}> Recent Matches </Text>
-              </TouchableOpacity>
-
-              <View style={{paddingTop:3}} />
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => this.props.navigation.navigate('PlayerLookup')}
-                >
-                <Text style={styles.text}> Player Lookup </Text>
-              </TouchableOpacity>
-
-              <View style={{paddingTop:3}} />
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => this.props.navigation.navigate('MyLeauges')}
-                >
-                <Text style={styles.text}> My Leagues </Text>
-              </TouchableOpacity>
-
-              <View style={{paddingTop:3}} />
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => this.props.navigation.navigate('CreateLeague')}
-                >
-                <Text style={styles.text}> Create League </Text>
-              </TouchableOpacity>
-
-              <View style={{paddingTop:3}} />
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => this.props.navigation.navigate('JoinLeague')}
-                >
-                <Text style={styles.text}> Join League </Text>
-              </TouchableOpacity>
-
-              <View style={{paddingTop:3}} />
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => this.props.navigation.navigate('Logout')}
-                >
-                <Text style={styles.text}> Logout </Text>
-              </TouchableOpacity>
+              <MainMenuButton labelText="Team Standings" linkName="TeamStandings" />
+              <MainMenuButton labelText="Recent Matches" linkName="RecentMatches" />
+              <MainMenuButton labelText="Player Lookup" linkName="PlayerLookup" />
+              <MainMenuButton labelText="My Leauges" linkName="MyLeauges" />
+              <MainMenuButton labelText="Create League" linkName="CreateLeague" />
+              <MainMenuButton labelText="Join League" linkName="JoinLeague" />
+              <MainMenuButton labelText="Logout" linkName="Logout" />
 
             </ScrollView>
             <AdMobBanner
@@ -94,6 +45,22 @@ export default class MainScreen extends React.Component {
         );
     }
 }
+
+class MainMenuButton extends React.Component {
+    render() {
+        return (
+          <View style={{paddingTop:3}}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => this.props.navigation.navigate({this.props.linkName})}
+            >
+              <Text style={styles.text}> {this.props.labelText} </Text>
+            </TouchableOpacity>
+          </View>
+        );
+    }
+}
+
 const styles = StyleSheet.create({
   bottomBanner: {
     position: 'absolute',
@@ -112,4 +79,4 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20
   }
-})
+});
