@@ -36,19 +36,13 @@ export default class RecentMatchesScreen extends React.Component {
 		    <View style={styles.pageContainer}>
 		      	<View style={{ flex: 1, flexDirection: "column", borderColor: "#ffffff", borderWidth: 2, padding: 5}}>
 		      		<View View style={{ flex: 1, backgroundColor: '6ced68', flexDirection: "row", borderColor: "#ffffff", borderWidth: 2, maxHeight: 35, alignItems: 'flex-start'}}>
-		      		    <View style={{ flex: 1, backgroundColor: '6ced68', flexDirection: "column", borderColor: "#ffffff", borderWidth: 2, padding: 3, maxWidth: 178, alignItems: 'flex-start'}}>
+		      		    <View style={{ flex: 1, backgroundColor: '6ced68', flexDirection: "column", borderColor: "#ffffff", borderWidth: 2,  maxWidth: 155, alignItems: 'flex-start'}}>
 			      			<Text style={ styles.title2Text }>SEASONAL STATS</Text>
-			      		</View>
-			      		<View style={{ flex: 1, backgroundColor: '6ced68', flexDirection: "column", borderColor: "#ffffff", borderWidth: 2, padding: 3, maxWidth: 60, alignItems: 'flex-start'}}>
-			      			<Text style={ styles.title2Text }>2016</Text>
-			      		</View>
-			      		<View style={{ flex: 1, backgroundColor: '6ced68', flexDirection: "column", borderColor: "#ffffff", borderWidth: 2, padding: 3, maxWidth: 60, alignItems: 'flex-start'}}>
-			      			<Text style={ styles.title2Text }>2017</Text>
 			      		</View>
 		      		</View>
 		      		<ScrollView>
 		      			<View View style={{ flex: 1, backgroundColor: '6ced68', flexDirection: "row", alignItems: 'flex-start'}}>
-				      		<View style={{ flex: 1, backgroundColor: '6ced68', flexDirection: "column", borderColor: "#ffffff", borderWidth: 2, maxWidth: 180, padding: 3, alignItems: 'flex-start'}}>
+				      		<View style={{ flex: 1, backgroundColor: '6ced68', flexDirection: "column", borderColor: "#ffffff", borderWidth: 2, maxWidth: 150, padding: 3, alignItems: 'flex-start'}}>
 				      			<Text style={{color: 'white', fontSize: 12, textAlign: 'left'}}>Games Played </Text>
 					      		<Text style={{color: 'white', fontSize: 12, textAlign: 'left'}}>Points Played </Text>
 					      		<Text style={{color: 'white', fontSize: 12, textAlign: 'left'}}>Assists </Text>
@@ -64,7 +58,7 @@ export default class RecentMatchesScreen extends React.Component {
 					      		<Text style={{color: 'white', fontSize: 12, textAlign: 'left'}}>Defensive Points Played</Text>
 					      		<Text style={{color: 'white', fontSize: 12, textAlign: 'left'}}>Drops</Text>
 				      		</View>
-				      		<View style={{ flex: 1, backgroundColor: '6ced68', flexDirection: "column", borderColor: "#ffffff", borderWidth: 2, maxWidth: 60, padding: 3, alignItems: 'center'}}>
+				      		<View style={{ flex: 1, backgroundColor: '6ced68', flexDirection: "column", borderColor: "#ffffff", borderWidth: 2, maxWidth: 50, padding: 3, alignItems: 'flex-start'}}>
 				      			<Text style={{color: 'white', fontSize: 12, textAlign: 'right'}}>3 </Text>
 					      		<Text style={{color: 'white', fontSize: 12, textAlign: 'right'}}>52 </Text>
 					      		<Text style={{color: 'white', fontSize: 12, textAlign: 'right'}}>1 </Text>
@@ -78,22 +72,6 @@ export default class RecentMatchesScreen extends React.Component {
 					      		<Text style={{color: 'white', fontSize: 12, textAlign: 'right'}}>0</Text>
 					      		<Text style={{color: 'white', fontSize: 12, textAlign: 'right'}}>15</Text>
 					      		<Text style={{color: 'white', fontSize: 12, textAlign: 'right'}}>37</Text>
-					      		<Text style={{color: 'white', fontSize: 12, textAlign: 'right'}}>0</Text>
-				      		</View>
-				      		<View style={{ flex: 1, backgroundColor: '6ced68', flexDirection: "column", borderColor: "#ffffff", borderWidth: 2, maxWidth: 60, padding: 3, alignItems: 'center'}}>
-				      			<Text style={{color: 'white', fontSize: 12, textAlign: 'right'}}>3 </Text>
-					      		<Text style={{color: 'white', fontSize: 12, textAlign: 'right'}}>40 </Text>
-					      		<Text style={{color: 'white', fontSize: 12, textAlign: 'right'}}>1 </Text>
-					      		<Text style={{color: 'white', fontSize: 12, textAlign: 'right'}}>2 </Text>
-					      		<Text style={{color: 'white', fontSize: 12, textAlign: 'right'}}>1</Text>
-					      		<Text style={{color: 'white', fontSize: 12, textAlign: 'right'}}>1 </Text>
-					      		<Text style={{color: 'white', fontSize: 12, textAlign: 'right'}}>16 </Text>
-					      		<Text style={{color: 'white', fontSize: 12, textAlign: 'right'}}>88.90 </Text>
-					      		<Text style={{color: 'white', fontSize: 12, textAlign: 'right'}}>1</Text>
-					      		<Text style={{color: 'white', fontSize: 12, textAlign: 'right'}}>2</Text>
-					      		<Text style={{color: 'white', fontSize: 12, textAlign: 'right'}}>0</Text>
-					      		<Text style={{color: 'white', fontSize: 12, textAlign: 'right'}}>20</Text>
-					      		<Text style={{color: 'white', fontSize: 12, textAlign: 'right'}}>20</Text>
 					      		<Text style={{color: 'white', fontSize: 12, textAlign: 'right'}}>0</Text>
 				      		</View>
 			      		</View>
