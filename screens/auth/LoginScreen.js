@@ -23,7 +23,7 @@ export default class LoginScreen extends React.Component {
               <ImageBackground
               style={{flex:1, height: undefined, width: undefined}}
                 source={require('../../assets/LoginPageBackground.png')}
-                imageStyle={{resizeMode: 'stretch'}}
+                imageStyle={{resizeMode: 'cover'}}
               >
               <View style={{paddingTop:300, alignItems:"center"}}>
                       <TextInput style={{width: 200, height: 40, borderWidth: 1, backgroundColor: "white"}}
