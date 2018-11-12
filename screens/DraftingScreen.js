@@ -32,8 +32,8 @@ componentDidMount() {
     var playerIndex = parseInt(randomNr, 10);
     for (var i = 0; i < this.state.numPlayers; i++) {
       while (indexList.indexOf(playerIndex) != -1){
-        var randomNr = Math.random() * totalPlayers;
-        var playerIndex = parseInt(randomNr, 10);
+        randomNr = Math.random() * totalPlayers;
+        playerIndex = parseInt(randomNr, 10);
       }
       indexList.push(playerIndex);
     }
@@ -46,7 +46,7 @@ componentDidMount() {
     snapshot.forEach(item => {
       if(indexList.indexOf(currentIndex) != -1){
         playersList.push(item.val());
-        this.writeUserData(this.state.leagueName, userID, item.val().id, item.val().Name, item.val().Team);
+        this.writeUserData(this.state.leagueName, userID, item.val().id, item.val().firstName, item.val().lastName, item.val().team);
       }
       currentIndex++;
     });
@@ -55,9 +55,11 @@ componentDidMount() {
   })
 }
 
-  writeUserData(leagueName, userID, playerID, name, team) {
+  writeUserData(leagueName, userID, playerID, firstName, lastName, team) {
     var playerRef = firebase.database().ref('/league/' + leagueName + '/users/' + userID + '/players/' + playerID).set({
-      name: name,
+      firstName: firstName,
+      lastName: lastName,
+      id: playerID,
       team: team
     });
   }
@@ -69,7 +71,7 @@ componentDidMount() {
   }
 
   alertItemName = (item) => {
-      Alert.alert('Team', item.Team)
+      Alert.alert('Team', item.team)
    }
 
    handleFinish() {
@@ -97,7 +99,7 @@ componentDidMount() {
                        style = {styles.container}
                        onPress = {() => this.alertItemName(item)}>
                        <Text style = {styles.text}>
-                          {item.Name}
+                          {item.firstName + " " + item.lastName}
                        </Text>
                     </TouchableOpacity>
                  ))
