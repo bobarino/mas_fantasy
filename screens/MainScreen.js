@@ -1,7 +1,5 @@
 import React from 'react';
 import { ScrollView, Button, Text, TouchableOpacity, StyleSheet, View } from 'react-native';
-
-import routeConfig from '../config/routeConfig';
 import * as firebase from 'firebase';
 import {
   AdMobBanner,
@@ -11,19 +9,41 @@ import {
 } from 'expo';
 
 export default class MainScreen extends React.Component {
-  state = { currentUser: null };
+  state = { currentUser: null, currentLeague: null};
 
   componentDidMount() {
     const { currentUser } = firebase.auth();
-    this.setState({ currentUser });
+    this.setState({ currentUser: currentUser});
+
+    //Sets first league as current league
+    var myLeaguesRef = firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/leagues');
+    var leagueArr = [];
+    myLeaguesRef.once('value').then(snapshot => {
+      snapshot.forEach(item => {
+          leagueArr.push(item.val().name);
+      });
+      if (leagueArr.length > 0) {
+        this.setState({ currentLeague: leagueArr[0] })
+      }
+    });
   }
     render() {
         const { currentUser } = this.state;
-        const { Main, Register, Login, Loading, ...routes } = routeConfig;
+        var currentLeague = this.state.currentLeague;
+
+        if (typeof(this.props.navigation.state.params) !== 'undefined') {
+          currentLeague = this.props.navigation.state.params.curLeague;
+        }
+        if (currentLeague != null) {
+          leagueText = <Text style={{fontWeight: "bold", color: 'white', padding: 10}}>League: {currentLeague}</Text>
+        } else {
+          leagueText = <Text style={{fontWeight: "bold", color: 'white', padding: 10}}>No Leagues Joined</Text>
+        }
         return (
           <View style={styles.container}>
             <ScrollView style={{backgroundColor: '#484f4f'}}>
               <Text style={{fontWeight: "bold", color: 'white', padding: 10}}>Hi {currentUser && currentUser.email}!</Text>
+              {leagueText}
 
               <View style={{paddingTop:10}} />
               <TouchableOpacity

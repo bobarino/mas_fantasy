@@ -21,7 +21,7 @@ componentDidMount() {
     this.setState({ numPlayers: numPlayers })
   });
 
-  //Get the players from the database (NOTE: Switch to AUDL when given access)
+  //Get the players from the database
   //Create a list of random players with the size being the number of players accessed from the league rules
   var playersRef = firebase.database().ref('/players');
   var playersList = [];
