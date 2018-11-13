@@ -1,8 +1,25 @@
-import React from 'react';
-import { ScrollView, Button, Text, TouchableOpacity, StyleSheet, View } from 'react-native';
+import React, { Component, } from 'react';
+import {StyleSheet} from 'react-native';
 
 import routeConfig from '../config/routeConfig';
 import * as firebase from 'firebase';
+import { Container
+       , Header
+       , List
+       , ListItem
+       , Content
+       , Thumbnail
+       , Left
+       , Body
+       , Right
+       , Col
+       , Row
+       , Grid
+       , Title
+       , Button
+       , Footer
+       , Text
+       , Icon } from 'native-base';
 import {
   AdMobBanner,
   AdMobInterstitial,
@@ -10,7 +27,7 @@ import {
   AdMobRewarded
 } from 'expo';
 
-export default class MainScreen extends React.Component {
+export default class MainScreen extends Component {
   state = { currentUser: null };
 
   componentDidMount() {
@@ -18,65 +35,120 @@ export default class MainScreen extends React.Component {
     this.setState({ currentUser });
   }
   render() {
-      const { currentUser } = this.state;
-      const { Main, Register, Login, Loading, ...routes } = routeConfig;
-      return (
-              <View style={styles.container}>
-              <ScrollView style={{backgroundColor: '#484f4f'}}>
+    const { currentUser } = this.state;
+    const { Main, Register, Login, Loading, ...routes } = routeConfig;
+    return (
+      <Container>
+        <Header>
+          <Left>
+            <Button transparent>
+              <Icon name='arrow-back'/>
+            </Button>
+          </Left>
+          <Body>
+            <Title> Header </Title>
+          </Body>
+        </Header>
 
-              <MainMenuButton labelText="Team Standings" linkName="TeamStandings" />
-              <MainMenuButton labelText="Recent Matches" linkName="RecentMatches" />
-              <MainMenuButton labelText="Player Lookup" linkName="PlayerLookup" />
-              <MainMenuButton labelText="My Leauges" linkName="MyLeauges" />
-              <MainMenuButton labelText="Create League" linkName="CreateLeague" />
-              <MainMenuButton labelText="Join League" linkName="JoinLeague" />
-              <MainMenuButton labelText="Logout" linkName="Logout" />
+        <Content>
+          <MainMenuButton mainText="League 1"
+                          subText="League 1 Description"
+                          onPress={()=> this.props.navigation.navigate('TeamStandings')}
+          />
+          <MainMenuButton mainText="League 2"
+                          subText="League 2 Description"
+                          onPress={()=> this.props.navigation.navigate('TeamStandings')}
+          />
+          <OldMainMenuButton labelText="Team Standings"
+                             onPress={()=> this.props.navigation.navigate('TeamStandings')}
+          />
+          <OldMainMenuButton labelText="Recent Matches"
+                             onPress={()=> this.props.navigation.navigate('RecentMatches')}
+          />
+          <OldMainMenuButton labelText="Player Lookup"
+                             onPress={()=> this.props.navigation.navigate('PlayerLookup')}
+          />
+          <OldMainMenuButton labelText="My Leauges"
+                             onPress={()=> this.props.navigation.navigate('MyLeagues')}
+          />
+          <OldMainMenuButton labelText="Create League"
+                             onPress={()=> this.props.navigation.navigate('CreateLeague')}
+          />
+          <OldMainMenuButton labelText="Join League"
+                             onPress={()=> this.props.navigation.navigate('JoinLeague')}
+          />
+          <OldMainMenuButton labelText="Logout"
+                             onPress={()=> this.props.navigation.navigate('Logout')}
+          />
+        </Content>
+        <Footer>
+          <AdMobBanner
+            style={styles.bottomBanner}
+            bannerSize="fullBanner"
+            adUnitID="ca-app-pub-3940256099942544/6300978111"
+          // Test ID, Replace with your-admob-unit-id
+            testDeviceID="EMULATOR"
+            didFailToReceiveAdWithError={this.bannerError}
+          />
+        </Footer>
+      </Container>
+    );
+  }
+}
 
-            </ScrollView>
-            <AdMobBanner
-              style={styles.bottomBanner}
-              bannerSize="fullBanner"
-              adUnitID="ca-app-pub-3940256099942544/6300978111"
-              // Test ID, Replace with your-admob-unit-id
-              testDeviceID="EMULATOR"
-              didFailToReceiveAdWithError={this.bannerError}
-            />
-          </View>
-        );
-    }
+class OldMainMenuButton extends React.Component {
+  render() {
+    const labelText = this.props.labelText;
+    const onPress = this.props.onPress;
+    return (
+      <ListItem style={styles.button} onPress={onPress}>
+        <Text style={styles.mainText}> {labelText} </Text>
+      </ListItem>
+    );
+  }
 }
 
 class MainMenuButton extends React.Component {
-    render() {
-        return (
-          <View style={{paddingTop:3}}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => this.props.navigation.navigate({this.props.linkName})}
-            >
-              <Text style={styles.text}> {this.props.labelText} </Text>
-            </TouchableOpacity>
-          </View>
-        );
-    }
+  render() {
+    const mainText = this.props.mainText;
+    const subText = this.props.subText;
+    const onPress = this.props.onPress;
+
+    return (
+      <ListItem style={{}} onPress={onPress}>
+        <Grid>
+          <Col style={{width:'200'}}>
+            <Icon type='FontAwesome' style={styles.icon_lg} name='group'/>
+          </Col>
+          <Col>
+            <Text style={styles.mainText}> {mainText} </Text>
+            <Text style={styles.subText}> {subText} </Text>
+          </Col>
+        </Grid>
+      </ListItem>
+    );
+  }
 }
 
+
 const styles = StyleSheet.create({
+  button: {
+    backgroundColor: 'white',
+    padding: 20
+  },
   bottomBanner: {
     position: 'absolute',
     bottom: 0
   },
-  container: {
-    flex: 1,
-    justifyContent: "center"
+  icon_lg: {
+    fontSize: 48,
   },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#034f84',
-    padding: 20
+  mainText: {
+    color: 'black',
+    fontSize: 42
   },
-  text: {
-    color: 'white',
-    fontSize: 20
+  subText: {
+    color: 'gray',
+    fontSize: 28
   }
 });
