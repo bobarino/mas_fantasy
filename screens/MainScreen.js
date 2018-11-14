@@ -89,7 +89,7 @@ export default class MainScreen extends Component {
           <OldMainMenuButton labelText="Player Lookup"
                              onPress={()=> this.props.navigation.navigate('PlayerLookup')}
           />
-          <OldMainMenuButton labelText="My Leauges"
+          <OldMainMenuButton labelText="My Leagues"
                              onPress={()=> this.props.navigation.navigate('MyLeagues')}
           />
           <OldMainMenuButton labelText="Create League"
