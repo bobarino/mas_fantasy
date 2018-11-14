@@ -26,7 +26,9 @@ import {
 } from 'expo';
 
 export default class MainScreen extends Component {
-  state = { currentUser: null };
+  state = { currentUser: null,
+            leagueArr: []
+  };
 
   componentDidMount() {
     const { currentUser } = firebase.auth();
@@ -41,7 +43,7 @@ export default class MainScreen extends Component {
       });
       if (leagueArr.length > 0) {
         console.log("\nSetting LeagueArr state");
-        this.setState({ currentLeagues: leagueArr });
+        this.setState({ leagueArr: leagueArr });
       }
     });
   }
@@ -52,7 +54,6 @@ export default class MainScreen extends Component {
         console.log("\nCurrent Prop: ", prop);
         return (
           <MainMenuButton labelText={prop}
-
                           onPress={()=> this.props.navigation.navigate('TeamStandings')}
           />
         );
@@ -75,6 +76,14 @@ export default class MainScreen extends Component {
     return (
       <Container>
         <Content>
+          {
+            this.state.leagueArr.map((item, index) => (
+              <MainMenuButton labelText={item}
+                              iconName="group"
+                              onPress={()=> this.props.navigation.navigate('League')}
+              />
+            ))
+          }
           <MainMenuButton labelText="League 1"
                           iconName="group"
                           onPress={()=> this.props.navigation.navigate('League')}
