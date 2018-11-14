@@ -117,7 +117,7 @@ class MainMenuButton extends React.Component {
     return (
       <ListItem style={{}} onPress={onPress}>
         <Grid>
-          <Col style={{width:'200'}}>
+          <Col style={{width:200}}>
             <Icon type='FontAwesome' style={styles.icon_lg} name='group'/>
           </Col>
           <Col>
