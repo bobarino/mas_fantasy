@@ -1,6 +1,6 @@
 import React, { Component, } from 'react';
 import routeConfig from '../config/routeConfig';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import * as firebase from 'firebase';
 import { Container
        , Header
@@ -17,7 +17,6 @@ import { Container
        , Title
        , Button
        , Footer
-       , Text
        , Icon } from 'native-base';
 import {
   AdMobBanner,
@@ -87,14 +86,21 @@ export default class MainScreen extends Component {
 
         <Content>
           { this.renderLeagues() }
-          <OldMainMenuButton labelText="League 2"
-                             onPress={()=> this.props.navigation.navigate('League')}
+          <MainMenuButton labelText="League 1"
+                          iconName="group"
+                          onPress={()=> this.props.navigation.navigate('League')}
           />
-          <OldMainMenuButton labelText="Create League"
-                             onPress={()=> this.props.navigation.navigate('CreateLeague')}
+          <MainMenuButton labelText="League 2"
+                          iconName="group"
+                          onPress={()=> this.props.navigation.navigate('League')}
           />
-          <OldMainMenuButton labelText="Join League"
-                             onPress={()=> this.props.navigation.navigate('JoinLeague')}
+          <MainMenuButton labelText="Create League"
+                          iconName="plus"
+                          onPress={()=> this.props.navigation.navigate('CreateLeague')}
+          />
+          <MainMenuButton labelText="Join League"
+                          iconName="search"
+                          onPress={()=> this.props.navigation.navigate('JoinLeague')}
           />
           <OldMainMenuButton labelText="Player Lookup"
                              onPress={()=> this.props.navigation.navigate('PlayerLookup')}
@@ -140,15 +146,13 @@ class MainMenuButton extends React.Component {
     const iconName = this.props.iconName;
 
     return (
-      <ListItem style={{}} onPress={onPress}>
-        <Grid>
-          <Col style={{justifyContent:'center', alignItems:'center', padding: 8}}>
-            <Icon type='FontAwesome' style={styles.icon_lg} name={iconName}/>
-          </Col>
-          <Col style={{justifyContent:'center', alignItems:'center'}}>
-            <Text style={styles.mainText}> {labelText} </Text>
-          </Col>
-        </Grid>
+      <ListItem icon onPress={onPress}>
+        <Left>
+          <Icon active style={styles.icon_lg} type='FontAwesome' name={iconName}/>
+        </Left>
+        <Body>
+          <Text style={styles.mainText}> {labelText} </Text>
+        </Body>
       </ListItem>
     );
   }
@@ -165,14 +169,11 @@ const styles = StyleSheet.create({
     bottom: 0
   },
   icon_lg: {
-    fontSize: 48,
-    width: 100,
-    height: 100,
-    justifyContent: "center",
+    fontSize: 24,
   },
   mainText: {
     color: 'black',
-    fontSize: 42
+    fontSize: 24
   },
   subText: {
     color: 'gray',
