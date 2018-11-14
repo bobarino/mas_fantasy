@@ -1,5 +1,6 @@
 import React, { Component, } from 'react';
 import routeConfig from '../config/routeConfig';
+import { MainMenuButton } from "../components/MenuButton.js"
 import { StyleSheet, Text } from 'react-native';
 import * as firebase from 'firebase';
 import { Container
@@ -47,19 +48,6 @@ export default class MainScreen extends Component {
       }
     });
   }
-  renderLeagues() {
-    var currentLeagues = this.state.currentLeagues;
-    if (currentLeagues != null) {
-      currentLeagues.map((prop) => {
-        console.log("\nCurrent Prop: ", prop);
-        return (
-          <MainMenuButton labelText={prop}
-                          onPress={()=> this.props.navigation.navigate('TeamStandings')}
-          />
-        );
-      })
-    }
-  }
   render() {
     const { currentUser } = this.state;
     const { Main, Register, Login, Loading, ...routes } = routeConfig;
@@ -85,11 +73,6 @@ export default class MainScreen extends Component {
             ))
           }
           <MainMenuButton labelText="League 1"
-                          iconName="group"
-                          onPress={()=> this.props.navigation.navigate('League')}
-          />
-          { this.renderLeagues() }
-          <MainMenuButton labelText="League 2"
                           iconName="group"
                           onPress={()=> this.props.navigation.navigate('League')}
           />
@@ -130,41 +113,6 @@ class OldMainMenuButton extends React.Component {
     return (
       <ListItem style={styles.button} onPress={onPress}>
         <Text style={styles.mainText}> {labelText} </Text>
-      </ListItem>
-    );
-  }
-}
-
-class MainMenuButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      labelText: props.labelText,
-      onPress: props.onPress,
-      iconName: props.iconName
-    };
-  }
-
-  componentDidMount() {
-    this.setState({
-      labelText: this.props.labelText,
-      onPress: this.props.onPress,
-      iconName: this.props.iconName
-    });
-  }
-  render() {
-    const labelText = this.state.labelText;
-    const onPress = this.state.onPress;
-    const iconName = this.state.iconName;
-
-    return (
-      <ListItem icon onPress={onPress}>
-        <Left>
-          <Icon active style={styles.icon_lg} type='FontAwesome' name={iconName}/>
-        </Left>
-        <Body>
-          <Text style={styles.mainText}> {labelText} </Text>
-        </Body>
       </ListItem>
     );
   }

@@ -1,5 +1,6 @@
 import React, { Component, } from 'react';
 import routeConfig from '../config/routeConfig';
+import { MainMenuButton } from "../components/MenuButton.js";
 import { StyleSheet } from 'react-native';
 import * as firebase from 'firebase';
 import { Container
@@ -113,28 +114,6 @@ class OldMainMenuButton extends React.Component {
   }
 }
 
-class MainMenuButton extends React.Component {
-  render() {
-    const labelText = this.props.labelText;
-    const onPress = this.props.onPress;
-    const iconName = this.props.iconName;
-
-    return (
-      <ListItem style={{}} onPress={onPress}>
-        <Grid>
-          <Col style={{justifyContent:'center', alignItems:'center', padding: 8}}>
-            <Icon type='FontAwesome' style={styles.icon_lg} name={iconName}/>
-          </Col>
-          <Col style={{justifyContent:'center', alignItems:'center'}}>
-            <Text style={styles.mainText}> {labelText} </Text>
-          </Col>
-        </Grid>
-      </ListItem>
-    );
-  }
-}
-
-
 const styles = StyleSheet.create({
   button: {
     backgroundColor: 'white',
@@ -149,17 +128,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     justifyContent: "center",
-  }
-
-
-
-
-
-
-
-
-
-,
+  },
   mainText: {
     color: 'black',
     fontSize: 42
