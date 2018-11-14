@@ -33,6 +33,7 @@ export default class CreateLeagueScreen extends React.Component {
     this.props.navigation.navigate('Drafting', { leagueName });
 
   }
+
   render() {
       return (
         <ScrollView style={{ backgroundColor: '#484f4f' }}>

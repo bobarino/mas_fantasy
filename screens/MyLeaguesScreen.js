@@ -21,12 +21,11 @@ export default class RecentMatchesScreen extends React.Component {
     });
   }
 
-  alertItemName = (item) => {
-      Alert.alert('League', item)
-   }
+  changeLeague(curLeague) {
+    this.props.navigation.navigate('Main', { curLeague });
+  }
 
   render() {
-    console.log(this.state.leagueArr)
     return (
       <ScrollView style={{ backgroundColor: '#484f4f'}}>
       <View style={{ marginTop: 20, alignItems:"center" }}>
@@ -36,7 +35,7 @@ export default class RecentMatchesScreen extends React.Component {
             <TouchableOpacity
                key = {index}
                style = {styles.container}
-               onPress = {() => this.alertItemName(item)}>
+               onPress = {() => this.changeLeague(item)}>
                <Text style = {styles.text}>
                   {item}
                </Text>
