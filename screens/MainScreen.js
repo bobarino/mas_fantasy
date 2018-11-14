@@ -1,6 +1,6 @@
 import React, { Component, } from 'react';
 import routeConfig from '../config/routeConfig';
-import { ScrollView, Button, Text, TouchableOpacity, StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import * as firebase from 'firebase';
 import { Container
        , Header
@@ -74,10 +74,12 @@ export default class MainScreen extends Component {
         <Content>
           <MainMenuButton mainText="League 1"
                           subText="League 1 Description"
+                          iconName="group"
                           onPress={()=> this.props.navigation.navigate('TeamStandings')}
           />
           <MainMenuButton mainText="League 2"
                           subText="League 2 Description"
+                          iconName="group"
                           onPress={()=> this.props.navigation.navigate('TeamStandings')}
           />
           <OldMainMenuButton labelText="Team Standings"
@@ -134,14 +136,15 @@ class MainMenuButton extends React.Component {
     const mainText = this.props.mainText;
     const subText = this.props.subText;
     const onPress = this.props.onPress;
+    const iconName = this.props.iconName;
 
     return (
       <ListItem style={{}} onPress={onPress}>
         <Grid>
-          <Col style={{width:200}}>
-            <Icon type='FontAwesome' style={styles.icon_lg} name='group'/>
+          <Col style={{width: 100, height: 64, justifyContent:'center', alignItems:'center', padding: 8}}>
+            <Icon type='FontAwesome' style={styles.icon_lg} name={iconName}/>
           </Col>
-          <Col>
+          <Col style={{width: 200, height: 64, justifyContent:'center', alignItems:'center'}}>
             <Text style={styles.mainText}> {mainText} </Text>
             <Text style={styles.subText}> {subText} </Text>
           </Col>
@@ -163,6 +166,9 @@ const styles = StyleSheet.create({
   },
   icon_lg: {
     fontSize: 48,
+    width: 100,
+    height: 100,
+    justifyContent: "center",
   },
   mainText: {
     color: 'black',
