@@ -11,6 +11,7 @@ import LogoutScreen from '../screens/auth/LogoutScreen';
 import RegisterScreen from '../screens/auth/RegisterScreen';
 import LoadingScreen from '../screens/auth/LoadingScreen';
 import DraftingScreen from '../screens/DraftingScreen';
+import LeagueScreen from '../screens/LeagueScreen';
 
 export default {
 
@@ -26,6 +27,7 @@ export default {
   PlayerScreen: { screen: PlayerScreen },
   Logout: { screen: LogoutScreen },
   Loading: { screen: LoadingScreen },
-  Drafting: { screen: DraftingScreen }
+  Drafting: { screen: DraftingScreen },
+  League: { screen: LeagueScreen }
 
 };

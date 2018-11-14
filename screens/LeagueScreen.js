@@ -26,7 +26,7 @@ import {
   AdMobRewarded
 } from 'expo';
 
-export default class MainScreen extends Component {
+export default class LeagueScreen extends Component {
   state = { currentUser: null };
 
   componentDidMount() {
@@ -46,19 +46,6 @@ export default class MainScreen extends Component {
       }
     });
   }
-  renderLeagues() {
-    var currentLeagues = this.state.currentLeagues;
-    if (currentLeagues != null) {
-      currentLeagues.map((prop) => {
-        console.log("\nCurrent Prop: ", prop);
-        return (
-          <OldMainMenuButton labelText={prop}
-                             onPress={()=> this.props.navigation.navigate('TeamStandings')}
-          />
-        );
-      })
-    }
-  }
   render() {
     const { currentUser } = this.state;
     const { Main, Register, Login, Loading, ...routes } = routeConfig;
@@ -67,11 +54,11 @@ export default class MainScreen extends Component {
     if (typeof(this.props.navigation.state.params) !== 'undefined') {
       currentLeagues = this.props.navigation.state.params.curLeagues;
     }
-    if (currentLeagues != null) {
-      leagueText = <Text style={{fontWeight: "bold", color: 'white', padding: 10}}>League: {currentLeagues[0]}</Text>
-    } else {
-      leagueText = <Text style={{fontWeight: "bold", color: 'white', padding: 10}}>No Leagues Joined</Text>
-    }
+      if (currentLeagues != null) {
+          leagueText = <Text style={{fontWeight: "bold", color: 'white', padding: 10}}>League: {currentLeagues[0]}</Text>
+      } else {
+          leagueText = <Text style={{fontWeight: "bold", color: 'white', padding: 10}}>No Leagues Joined</Text>
+      }
     return (
       <Container>
         <Header>
@@ -86,24 +73,17 @@ export default class MainScreen extends Component {
         </Header>
 
         <Content>
-          { this.renderLeagues() }
-          <OldMainMenuButton labelText="League 2"
-                             onPress={()=> this.props.navigation.navigate('League')}
+          <OldMainMenuButton labelText="This Week"
+                             onPress={()=> this.props.navigation.navigate('RecentMatches')}
           />
-          <OldMainMenuButton labelText="Create League"
-                             onPress={()=> this.props.navigation.navigate('CreateLeague')}
+          <OldMainMenuButton labelText="Leaderboard"
+                             onPress={()=> this.props.navigation.navigate('TeamStandings')}
           />
-          <OldMainMenuButton labelText="Join League"
-                             onPress={()=> this.props.navigation.navigate('JoinLeague')}
+          <OldMainMenuButton labelText="Calendar"
+                             onPress={()=> this.props.navigation.navigate('Schedule')}
           />
-          <OldMainMenuButton labelText="Player Lookup"
-                             onPress={()=> this.props.navigation.navigate('PlayerLookup')}
-          />
-          <OldMainMenuButton labelText="My Leagues"
-                             onPress={()=> this.props.navigation.navigate('MyLeagues')}
-          />
-          <OldMainMenuButton labelText="Logout"
-                             onPress={()=> this.props.navigation.navigate('Logout')}
+          <OldMainMenuButton labelText="Trades"
+                             onPress={()=> this.props.navigation.navigate('Trade')}
           />
         </Content>
         <Footer>
