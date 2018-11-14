@@ -51,8 +51,9 @@ export default class MainScreen extends Component {
       currentLeagues.map((prop) => {
         console.log("\nCurrent Prop: ", prop);
         return (
-          <OldMainMenuButton labelText={prop}
-                             onPress={()=> this.props.navigation.navigate('TeamStandings')}
+          <MainMenuButton labelText={prop}
+
+                          onPress={()=> this.props.navigation.navigate('TeamStandings')}
           />
         );
       })
@@ -73,23 +74,12 @@ export default class MainScreen extends Component {
     }
     return (
       <Container>
-        <Header>
-          <Left>
-            <Button transparent>
-              <Icon name='arrow-back'/>
-            </Button>
-          </Left>
-          <Body>
-            <Title> Header </Title>
-          </Body>
-        </Header>
-
         <Content>
-          { this.renderLeagues() }
           <MainMenuButton labelText="League 1"
                           iconName="group"
                           onPress={()=> this.props.navigation.navigate('League')}
           />
+          { this.renderLeagues() }
           <MainMenuButton labelText="League 2"
                           iconName="group"
                           onPress={()=> this.props.navigation.navigate('League')}
@@ -104,9 +94,6 @@ export default class MainScreen extends Component {
           />
           <OldMainMenuButton labelText="Player Lookup"
                              onPress={()=> this.props.navigation.navigate('PlayerLookup')}
-          />
-          <OldMainMenuButton labelText="My Leagues"
-                             onPress={()=> this.props.navigation.navigate('MyLeagues')}
           />
           <OldMainMenuButton labelText="Logout"
                              onPress={()=> this.props.navigation.navigate('Logout')}
@@ -140,10 +127,26 @@ class OldMainMenuButton extends React.Component {
 }
 
 class MainMenuButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      labelText: props.labelText,
+      onPress: props.onPress,
+      iconName: props.iconName
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      labelText: this.props.labelText,
+      onPress: this.props.onPress,
+      iconName: this.props.iconName
+    });
+  }
   render() {
-    const labelText = this.props.labelText;
-    const onPress = this.props.onPress;
-    const iconName = this.props.iconName;
+    const labelText = this.state.labelText;
+    const onPress = this.state.onPress;
+    const iconName = this.state.iconName;
 
     return (
       <ListItem icon onPress={onPress}>
