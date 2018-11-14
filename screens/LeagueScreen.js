@@ -62,29 +62,23 @@ export default class LeagueScreen extends Component {
       }
     return (
       <Container>
-        <Header>
-          <Left>
-            <Button transparent>
-              <Icon name='arrow-back'/>
-            </Button>
-          </Left>
-          <Body>
-            <Title> Header </Title>
-          </Body>
-        </Header>
 
         <Content>
-          <OldMainMenuButton labelText="This Week"
-                             onPress={()=> this.props.navigation.navigate('RecentMatches')}
+          <MainMenuButton labelText="This Week"
+                          iconName="play"
+                          onPress={()=> this.props.navigation.navigate('RecentMatches')}
           />
-          <OldMainMenuButton labelText="Leaderboard"
-                             onPress={()=> this.props.navigation.navigate('TeamStandings')}
+          <MainMenuButton labelText="Leaderboard"
+                          iconName="list-ol"
+                          onPress={()=> this.props.navigation.navigate('TeamStandings')}
           />
-          <OldMainMenuButton labelText="Calendar"
-                             onPress={()=> this.props.navigation.navigate('Schedule')}
+          <MainMenuButton labelText="Calendar"
+                          iconName="calendar"
+                          onPress={()=> this.props.navigation.navigate('Schedule')}
           />
-          <OldMainMenuButton labelText="Trades"
-                             onPress={()=> this.props.navigation.navigate('Trade')}
+          <MainMenuButton labelText="Trades"
+                          iconName="exchange"
+                          onPress={()=> this.props.navigation.navigate('Trade')}
           />
         </Content>
         <Footer>
@@ -98,18 +92,6 @@ export default class LeagueScreen extends Component {
           />
         </Footer>
       </Container>
-    );
-  }
-}
-
-class OldMainMenuButton extends React.Component {
-  render() {
-    const labelText = this.props.labelText;
-    const onPress = this.props.onPress;
-    return (
-      <ListItem style={styles.button} onPress={onPress}>
-        <Text style={styles.mainText}> {labelText} </Text>
-      </ListItem>
     );
   }
 }

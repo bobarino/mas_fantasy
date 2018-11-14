@@ -56,11 +56,6 @@ export default class MainScreen extends Component {
     if (typeof(this.props.navigation.state.params) !== 'undefined') {
       currentLeagues = this.props.navigation.state.params.curLeagues;
     }
-    if (currentLeagues != null) {
-      leagueText = <Text style={{fontWeight: "bold", color: 'white', padding: 10}}>League: {currentLeagues[0]}</Text>
-    } else {
-      leagueText = <Text style={{fontWeight: "bold", color: 'white', padding: 10}}>No Leagues Joined</Text>
-    }
     return (
       <Container>
         <Content>
@@ -72,10 +67,6 @@ export default class MainScreen extends Component {
               />
             ))
           }
-          <MainMenuButton labelText="League 1"
-                          iconName="group"
-                          onPress={()=> this.props.navigation.navigate('League')}
-          />
           <MainMenuButton labelText="Create League"
                           iconName="plus"
                           onPress={()=> this.props.navigation.navigate('CreateLeague')}
