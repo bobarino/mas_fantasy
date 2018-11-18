@@ -1,7 +1,7 @@
 import React, { Component, } from 'react';
 import routeConfig from '../config/routeConfig';
-import { MainMenuButton } from "../components/MenuButton.js"
-import { StyleSheet, Text } from 'react-native';
+import { MainMenuButton } from "../components/MenuButton.js";
+import { StyleSheet } from 'react-native';
 import * as firebase from 'firebase';
 import { Container
        , Header
@@ -18,6 +18,7 @@ import { Container
        , Title
        , Button
        , Footer
+       , Text
        , Icon } from 'native-base';
 import {
   AdMobBanner,
@@ -26,10 +27,8 @@ import {
   AdMobRewarded
 } from 'expo';
 
-export default class MainScreen extends Component {
-  state = { currentUser: null,
-            leagueArr: []
-  };
+export default class LeagueScreen extends Component {
+  state = { currentUser: null };
 
   componentDidMount() {
     const { currentUser } = firebase.auth();
@@ -44,7 +43,7 @@ export default class MainScreen extends Component {
       });
       if (leagueArr.length > 0) {
         console.log("\nSetting LeagueArr state");
-        this.setState({ leagueArr: leagueArr });
+        this.setState({ currentLeagues: leagueArr });
       }
     });
   }
@@ -56,30 +55,30 @@ export default class MainScreen extends Component {
     if (typeof(this.props.navigation.state.params) !== 'undefined') {
       currentLeagues = this.props.navigation.state.params.curLeagues;
     }
+      if (currentLeagues != null) {
+          leagueText = <Text style={{fontWeight: "bold", color: 'white', padding: 10}}>League: {currentLeagues[0]}</Text>
+      } else {
+          leagueText = <Text style={{fontWeight: "bold", color: 'white', padding: 10}}>No Leagues Joined</Text>
+      }
     return (
       <Container>
+
         <Content>
-          {
-            this.state.leagueArr.map((item, index) => (
-              <MainMenuButton labelText={item}
-                              iconName="group"
-                              onPress={()=> this.props.navigation.navigate('League')}
-              />
-            ))
-          }
-          <MainMenuButton labelText="Create League"
-                          iconName="plus"
-                          onPress={()=> this.props.navigation.navigate('CreateLeague')}
+          <MainMenuButton labelText="This Week"
+                          iconName="play"
+                          onPress={()=> this.props.navigation.navigate('RecentMatches')}
           />
-          <MainMenuButton labelText="Join League"
-                          iconName="search"
-                          onPress={()=> this.props.navigation.navigate('JoinLeague')}
+          <MainMenuButton labelText="Leaderboard"
+                          iconName="list-ol"
+                          onPress={()=> this.props.navigation.navigate('TeamStandings')}
           />
-          <OldMainMenuButton labelText="Player Lookup"
-                             onPress={()=> this.props.navigation.navigate('PlayerLookup')}
+          <MainMenuButton labelText="Calendar"
+                          iconName="calendar"
+                          onPress={()=> this.props.navigation.navigate('Schedule')}
           />
-          <OldMainMenuButton labelText="Logout"
-                             onPress={()=> this.props.navigation.navigate('Logout')}
+          <MainMenuButton labelText="Trades"
+                          iconName="exchange"
+                          onPress={()=> this.props.navigation.navigate('Trade')}
           />
         </Content>
         <Footer>
@@ -97,19 +96,6 @@ export default class MainScreen extends Component {
   }
 }
 
-class OldMainMenuButton extends React.Component {
-  render() {
-    const labelText = this.props.labelText;
-    const onPress = this.props.onPress;
-    return (
-      <ListItem style={styles.button} onPress={onPress}>
-        <Text style={styles.mainText}> {labelText} </Text>
-      </ListItem>
-    );
-  }
-}
-
-
 const styles = StyleSheet.create({
   button: {
     backgroundColor: 'white',
@@ -120,11 +106,14 @@ const styles = StyleSheet.create({
     bottom: 0
   },
   icon_lg: {
-    fontSize: 24,
+    fontSize: 48,
+    width: 100,
+    height: 100,
+    justifyContent: "center",
   },
   mainText: {
     color: 'black',
-    fontSize: 24
+    fontSize: 42
   },
   subText: {
     color: 'gray',
