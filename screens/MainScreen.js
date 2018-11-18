@@ -110,6 +110,30 @@ class OldMainMenuButton extends React.Component {
 }
 
 
+<<<<<<< HEAD
+=======
+              <View style={{paddingTop:3}} />
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => this.props.navigation.navigate('Matchup', { currentLeague })}
+                >
+                <Text style={styles.text}> Matchup </Text>
+              </TouchableOpacity>
+
+            </ScrollView>
+            <AdMobBanner
+              style={styles.bottomBanner}
+              bannerSize="fullBanner"
+              adUnitID="ca-app-pub-3940256099942544/6300978111"
+              // Test ID, Replace with your-admob-unit-id
+              testDeviceID="EMULATOR"
+              didFailToReceiveAdWithError={this.bannerError}
+            />
+          </View>
+        );
+    }
+}
+>>>>>>> Matchup Screen initial
 const styles = StyleSheet.create({
   button: {
     backgroundColor: 'white',

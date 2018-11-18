@@ -24,6 +24,7 @@ export default class MyTeamScreen extends React.Component {
       });
       this.setState({ players: playersList })
     });
+    //Get team name
     var myTeamNameRef = firebase.database().ref('/league/' + currentLeague + '/users/' + userID);
     myTeamNameRef.once('value').then(snapshot => {
       const teamName = snapshot.val().team_name;

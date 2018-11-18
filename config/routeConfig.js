@@ -13,6 +13,7 @@ import LoadingScreen from '../screens/auth/LoadingScreen';
 import DraftingScreen from '../screens/DraftingScreen';
 import LeagueScreen from '../screens/LeagueScreen';
 import MyTeamScreen from '../screens/MyTeamScreen';
+import MatchupScreen from '../screens/MatchupScreen';
 
 export default {
 
@@ -29,7 +30,12 @@ export default {
   Logout: { screen: LogoutScreen },
   Loading: { screen: LoadingScreen },
   Drafting: { screen: DraftingScreen },
+<<<<<<< HEAD
   League: { screen: LeagueScreen },
   MyTeam: { screen: MyTeamScreen }
+=======
+  MyTeam: { screen: MyTeamScreen },
+  Matchup: { screen: MatchupScreen }
+>>>>>>> Matchup Screen initial
 
 };

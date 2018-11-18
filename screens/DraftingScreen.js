@@ -8,7 +8,10 @@ export default class DraftingScreen extends React.Component {
     leagueName: "",
     players: [],
     numPlayers: 0,
-    teamName: ""
+    teamName: "",
+    numTeams : 0,
+    curTeams: 0,
+    matchupFlag: true
   }
 
 componentDidMount() {
@@ -18,7 +21,8 @@ componentDidMount() {
   var leagueRef = firebase.database().ref('/league/' + league + '/rules');
   leagueRef.once('value').then(snapshot => {
     const numPlayers = snapshot.val().num_players;
-    this.setState({ numPlayers: numPlayers })
+    const numTeams = snapshot.val().num_teams;
+    this.setState({ numPlayers: numPlayers, numTeams: numTeams });
   });
 
   //Get the players from the database
@@ -50,9 +54,16 @@ componentDidMount() {
       }
       currentIndex++;
     });
-    this.setState({ players: playersList })
+    this.setState({ players: playersList });
     this.updateUserLeagues(this.state.leagueName, userID)
   })
+
+  //Get Number of users in the league currently. If it is equal to the rule, create initial matchups
+  var leagueUsersRef = firebase.database().ref('/league/' + league + '/users');
+  leagueUsersRef.once('value').then(snapshot => {
+    var currentTeamTotal = snapshot.numChildren();
+    this.setState({ curTeams: currentTeamTotal });
+  });
 }
 
   writeUserData(leagueName, userID, playerID, firstName, lastName, team) {
@@ -81,7 +92,35 @@ componentDidMount() {
      this.props.navigation.navigate('Main');
    }
 
+   createMatchups() {
+     var leagueUsersRef = firebase.database().ref('/league/' + this.state.leagueName + '/users');
+     leagueUsersRef.once('value').then(snapshot => {
+       //Use this to keep track of even and odds. When you get team a and b, do the push.
+       var i = 0;
+       var team_a = null;
+       var team_b = null;
+       snapshot.forEach(item => {
+         if (i%2 == 0) {
+           team_a = item.key;
+         } else {
+           team_b = item.key;
+           var matchupRef = firebase.database().ref('/league/' + this.state.leagueName + '/matchups/week1/').push({
+             team_a: team_a,
+             team_b: team_b,
+           });
+         }
+         i++;
+       });
+     });
+   }
+
   render() {
+    const { numTeams, curTeams, matchupFlag } = this.state;
+
+    if (matchupFlag == true && numTeams != 0 && curTeams == numTeams) {
+      this.createMatchups()
+      this.setState({ matchupFlag: false })
+    }
       return (
         <ScrollView style={{ backgroundColor: '#484f4f' }}>
           <View style={{paddingTop:50, alignItems:"center"}}>
