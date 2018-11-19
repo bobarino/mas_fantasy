@@ -108,11 +108,17 @@ export default class MatchupScreen extends React.Component {
     const { teamA, teamB, currentLeague, nameA, nameB, playersA, playersB } = this.state;
     let playerScoresA = [];
     let playerScoresB = [];
+    let totalScoreA = 0;
+    let totalScoreB = 0;
     for (var i = 0; i < playersA.length; i++) {
       randomNr = Math.random() * 60 + 40;
-      playerScoresA.push(parseInt(randomNr, 10));
+      let sA = parseInt(randomNr, 10);
+      playerScoresA.push(sA);
+      totalScoreA += sA;
       randomNr = Math.random() * 60 + 40;
-      playerScoresB.push(parseInt(randomNr, 10));
+      let sB = parseInt(randomNr, 10);
+      playerScoresB.push(sB);
+      totalScoreB += sB;
     }
 
     return (
@@ -142,6 +148,14 @@ export default class MatchupScreen extends React.Component {
                 </CardItem>
               ))
             }
+            <CardItem>
+              <Left>
+                <Text> Total: </Text>
+              </Left>
+              <Right>
+                <Text>{totalScoreA}</Text>
+              </Right>
+            </CardItem>
           </Card>
           <Card>
             <CardItem header>
@@ -166,6 +180,14 @@ export default class MatchupScreen extends React.Component {
                 </CardItem>
               ))
             }
+            <CardItem>
+              <Left>
+                <Text> Total: </Text>
+              </Left>
+              <Right>
+                <Text>{totalScoreB}</Text>
+              </Right>
+            </CardItem>
           </Card>
         </Content>
         <Footer>

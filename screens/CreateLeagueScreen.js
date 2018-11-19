@@ -1,6 +1,21 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button, ScrollView, TouchableOpacity } from 'react-native';
 import * as firebase from 'firebase';
+import { Container
+       , Header
+       , List
+       , ListItem
+       , Content
+       , Thumbnail
+       , Left
+       , Body
+       , Right
+       , Col
+       , Row
+       , Grid
+       , Title
+       , Footer
+       , Icon } from 'native-base';
 
 export default class CreateLeagueScreen extends React.Component {
   constructor(props) {
@@ -15,7 +30,7 @@ export default class CreateLeagueScreen extends React.Component {
 
   handleTeams(sign) {
     this.setState((prevState, { numTeams }) => ({
-      numTeams: prevState.numTeams + (sign * 1)
+      numTeams: prevState.numTeams + (sign * 2)
     }));
   }
 
@@ -36,19 +51,19 @@ export default class CreateLeagueScreen extends React.Component {
 
   render() {
       return (
-        <ScrollView style={{ backgroundColor: '#484f4f' }}>
+        <ScrollView style={{ backgroundColor: 'white' }}>
           <View style={{paddingTop:50, alignItems:"center"}}>
 
-              <Text style={{fontWeight: "bold", color: 'white', padding: 10, fontSize: 20}}>League Name</Text>
+              <Text style={{color: 'black', padding: 10, fontSize: 24}}>League Name</Text>
               <TextInput style={{width: 200, height: 40, borderWidth: 1, backgroundColor: 'white'}}
                   onChangeText={(text) => { this.setState({leagueName: text}) }}
-                  placeholder="League Name"
+                  placeholder=" League Name"
                   autoCorrect={false}
               />
 
               <View style={{paddingTop:10}} />
-              <Text style={{fontWeight: "bold", color: 'white', padding: 10, fontSize: 20}}>Number of Teams</Text>
-              <Text style={{fontWeight: "bold", color: 'white', padding: 5, fontSize: 20}}>{ this.state.numTeams }</Text>
+              <Text style={{color: 'black', padding: 10, fontSize: 24}}>Number of Teams</Text>
+              <Text style={{color: 'black', padding: 5, fontSize: 24}}>{ this.state.numTeams }</Text>
               <View style={styles.container}>
                 <TouchableOpacity
                   style={styles.buttonPlusMinus}
@@ -65,8 +80,8 @@ export default class CreateLeagueScreen extends React.Component {
               </View>
 
               <View style={{paddingTop:10}} />
-              <Text style={{fontWeight: "bold", color: 'white', padding: 10, fontSize: 20}}>Number of Players</Text>
-              <Text style={{fontWeight: "bold", color: 'white', padding: 5, fontSize: 20}}>{ this.state.numPlayers }</Text>
+              <Text style={{color: 'black', padding: 10, fontSize: 24}}>Number of Players</Text>
+              <Text style={{color: 'black', padding: 5, fontSize: 24}}>{ this.state.numPlayers }</Text>
               <View style={styles.container}>
                 <TouchableOpacity
                   style={styles.buttonPlusMinus}
