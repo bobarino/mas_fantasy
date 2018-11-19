@@ -60,10 +60,10 @@ export default class MainScreen extends Component {
       <Container>
         <Content>
           {
-            this.state.leagueArr.map((item, index) => (
-              <MainMenuButton labelText={item}
+            this.state.leagueArr.map((currentLeague, index) => (
+              <MainMenuButton labelText={currentLeague}
                               iconName="group"
-                              onPress={()=> this.props.navigation.navigate('League')}
+                              onPress={()=> this.props.navigation.navigate('League', { currentLeague })}
               />
             ))
           }
