@@ -109,7 +109,6 @@ class OldMainMenuButton extends React.Component {
   }
 }
 
-
 const styles = StyleSheet.create({
   button: {
     backgroundColor: 'white',
