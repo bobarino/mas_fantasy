@@ -30,12 +30,8 @@ export default {
   Logout: { screen: LogoutScreen },
   Loading: { screen: LoadingScreen },
   Drafting: { screen: DraftingScreen },
-<<<<<<< HEAD
   League: { screen: LeagueScreen },
-  MyTeam: { screen: MyTeamScreen }
-=======
   MyTeam: { screen: MyTeamScreen },
   Matchup: { screen: MatchupScreen }
->>>>>>> Matchup Screen initial
 
 };
