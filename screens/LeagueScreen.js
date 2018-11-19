@@ -64,6 +64,16 @@ export default class LeagueScreen extends React.Component {
       <Container>
 
         <Content>
+
+        <ListItem icon onPress={()=> this.props.navigation.navigate('MyTeam', { currentLeague })}>
+          <Left>
+            <Icon active style={styles.icon_lg} type='FontAwesome' name="group"/>
+          </Left>
+          <Body>
+            <Text style={styles.mainText}> My Team </Text>
+          </Body>
+        </ListItem>
+
           <ListItem icon onPress={()=> this.props.navigation.navigate('Matchup', { currentLeague })}>
             <Left>
               <Icon active style={styles.icon_lg} type='FontAwesome' name="play"/>
