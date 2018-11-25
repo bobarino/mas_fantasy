@@ -1,6 +1,24 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button, ScrollView, Image, TouchableHighlight, TouchableOpacity,} from 'react-native';
+import * as firebase from 'firebase';
+
+
 export default class RecentMatchesScreen extends React.Component {
+  state = {
+  	playerStats: []
+  }
+
+  componentDidMount() {
+  	var stats = [];
+  	var player = firebase.database().ref('/players/1/');
+  	player.once('value').then(snapshot => {
+      snapshot.forEach(item => {
+        stats.push(item.val());
+      });
+    this.setState({ playerStats: stats });
+    })
+  }
+  
   render() {
     return (
     	<View style={{ flex: 1, backgroundColor: '#484f4f' }}>
