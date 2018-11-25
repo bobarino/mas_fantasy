@@ -33,7 +33,7 @@ export default class RecentMatchesScreen extends React.Component {
 			    
 	      		<Text style={{ fontWeight: "bold", color: 'black', fontSize: 25, textAlign: 'center'}}>D. SPERLING</Text>
 	    
-			    <View style={{ flex: 1, flexDirection: "column", padding: 30, width: 340, }}>
+			    <View style={{ flex: 1, flexDirection: "column", padding: 30, width: 360, }}>
 				    
 	      			<View />
 	      			<View style={{ flex: 1, flexDirection: "row", borderColor: "#b1b6bf", borderWidth: 2, padding: 5}}>
