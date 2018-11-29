@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import { MainMenuButton } from "../components/MenuButton.js";
 import * as firebase from 'firebase';
 import { Container
@@ -106,8 +106,285 @@ export default class MatchupScreen extends React.Component {
 
   render() {
     const { teamA, teamB, currentLeague, nameA, nameB, playersA, playersB } = this.state;
+    let playerScoresA = [];
+    let playerScoresB = [];
+    let totalScoreA = 0;
+    let totalScoreB = 0;
+    for (var i = 0; i < playersA.length; i++) {
+      randomNr = Math.random() * 60 + 40;
+      playerScoresA.push(parseInt(randomNr, 10));
+      totalScoreA += parseInt(randomNr, 10);
+      randomNr = Math.random() * 60 + 40;
+      playerScoresB.push(parseInt(randomNr, 10));
+      totalScoreB += parseInt(randomNr, 10);
+    }
+    // playerScoresA.sort((a,b) => a < b);
+    // playerScoresB.sort((a,b) => a < b);
+    // console.log(playerScoresA);
+    // console.log(currentLeague);
+
+//     return (
+//       <View style={styles.parent}>
+//
+//         <View style={styles.teams}>
+//         <Text style={styles.teama}>
+//         {nameA}
+//         </Text>
+//
+//         <Text style={styles.teamb}>
+//         {nameB}
+//         </Text>
+//
+//         </View>
+//         <Image style={styles.vs}source={require('../assets/vsicon.png')}>
+//         </Image>
+//
+//
+//         <View style={styles.points}>
+//
+//         <Text style={styles.ascore}>
+//           {totalScoreA}
+//         </Text>
+//         <Text style={styles.bscore}>
+//           {totalScoreB}
+//         </Text>
+//
+//
+//         </View>
+//
+//         <Container>
+//          <Content>
+//            <Card>
+//              <CardItem bordered>
+//              <Text>{nameA} Top Players </Text>
+//              </CardItem>
+//              <CardItem bordered>
+//              <Text>{playersA[0].firstName + " " + playersA[0].lastName}</Text>
+//              </CardItem>
+//              <CardItem bordered>
+//              <Text>{playersA[1].firstName + " " + playersA[1].lastName}</Text>
+//              </CardItem>
+//              <CardItem bordered>
+//              <Text>{playersA[2].firstName + " " + playersA[2].lastName}</Text>
+//              </CardItem>
+//            </Card>
+//          </Content>
+//        </Container>
+//
+//        <Container>
+//          <Content>
+//            <Card>
+//              <CardItem bordered>
+//              <Text>{nameB} Top Players </Text>
+//              </CardItem>
+//              <CardItem bordered>
+//              <Text>{playersB[0].firstName  + " " + playersB[0].lastName}</Text>
+//              </CardItem>
+//              <CardItem bordered>
+//              <Text>{playersB[1].firstName + " " + playersB[1].lastName}</Text>
+//              </CardItem>
+//              <CardItem bordered>
+//              <Text>{playersB[2].firstName + " " + playersB[2].lastName}</Text>
+//              </CardItem>
+//            </Card>
+//          </Content>
+//        </Container>
+//
+//
+//
+//
+//
+//
+//
+//       </View>
+//
+//
+//
+//       // <Container>
+//       //   <Content>
+//       //     <Card>
+//       //       <CardItem>
+//       //         <View style={styles.teams}>
+//       //         <Text>
+//       //           {this.state.teama1} : {this.state.a1score} points
+//       //         </Text>
+//       //         <Right>
+//       //         <Text >
+//       //           {this.state.teamb1} : {this.state.b1score} points
+//       //         </Text>
+//
+//       //         </Right>
+//
+//
+//       //         </View>
+//
+//
+//       //       </CardItem>
+//       //     </Card>
+//       //   </Content>
+//       // </Container>
+// //       <View style={styles.parent}>
+//
+//
+// //       <Text style={styles.title}>
+// //       RECENT MATCHES</Text>
+//
+// //       <View style={styles.info}>
+//
+// // <Text style={styles.loctext}>
+// // {this.state.location}</Text>
+// // <Text style={styles.timetext}>
+// // {this.state.time}</Text>
+//
+// // </View>
+// //       <View style={styles.container}>
+//
+// //         <View style={styles.box}>
+//
+// //         <Text style={styles.team1text}>
+// //         {this.state.team1}</Text>
+// //         <Text style={{color: 'antiquewhite', textAlign: 'left', fontSize: 10}}>
+// //         {this.state.team1record}
+// //         </Text>
+// //         <Image style={{marginLeft:90}}source={require('../assets/atlhustle.jpeg')}></Image>
+// //         <Text style={{fontSize: 20, marginLeft:95, color:'antiquewhite'}}>
+// //           {this.state.team1score}
+// //         </Text>
+// //         </View>
+//
+// //         <View style={styles.boxleft}>
+// //         <Text style={styles.team2text}>
+// //         {this.state.team2}</Text>
+// //         <Text style={{color: 'antiquewhite', textAlign: 'right', fontSize: 10}}>
+// //         {this.state.team2record}
+// //         </Text>
+// //         <Image style={{marginLeft: 40}} source={require('../assets/asol.png')}></Image>
+// //         <Text style={{fontSize: 20, marginLeft:45, color:'antiquewhite'}}>
+// //           {this.state.team2score}
+// //         </Text>
+// //         </View>
+// //       </View>
+// //       </View>
+//
+//     );
+//   }
+// }
+// const styles = StyleSheet.create({
+//   parent: {
+//     flex: 1,
+//     flexDirection: 'column',
+//     backgroundColor: 'white'
+//   },
+//   teams: {
+//     flexDirection: 'row',
+//   },
+//   points: {
+//     flexDirection: 'row',
+//   },
+//   teamb: {
+//
+//     marginTop: 10,
+//     marginLeft: '45%'
+//   },
+//   teama: {
+//     marginLeft: '15%',
+//     marginTop: 10
+//   },
+//   ascore: {
+//     marginLeft: '15%',
+//     fontSize: 30,
+//     marginTop: 10
+//
+//   },
+//   bscore: {
+//     marginLeft: '50%',
+//     fontSize: 30,
+//     marginTop: 10
+//
+//   },
+//   vs: {
+//     marginLeft: '45%',
+//   }
+//   // info: {
+//   //   flexDirection: 'row',
+//   //   width: '100%',
+//   //   height: 20,
+//   //   backgroundColor: 'black',
+//   //   marginTop: 20
+//   // },
+//   // loctext: {
+//   //   color: 'antiquewhite',
+//   //   fontSize: 10,
+//   //   textAlign: 'left',
+//   //   paddingLeft: 10
+//   // },
+//   // timetext: {
+//   //   color: 'antiquewhite',
+//   //   fontSize: 10,
+//   //   paddingLeft: 140
+//   // },
+//
+//   // container: {
+//   //   flex: 1,
+//   //   flexDirection: 'row',
+//   //   backgroundColor: '#74b9ff'
+//   // },
+//   // title: {
+//   //   color: 'antiquewhite',
+//   //   fontSize: 35,
+//   //   textAlign: 'center'
+//
+//   // },
+//   // box: {
+//   //   width: '50%',
+//   //   height: 120,
+//   //   backgroundColor: '#636e72',
+//
+//   // },
+//   // boxleft: {
+//   //   width: '50%',
+//   //   height: 120,
+//   //   backgroundColor: '#636e72',
+//   //   borderLeftWidth: 1,
+//   //   borderLeftColor: 'white'
+//
+//   // },
+//
+//   // team2text: {
+//   //   color: 'antiquewhite',
+//   //   fontSize: 20,
+//   //   textAlign: 'right'
+//   // }
+// });
 
     return (
+    <View style={styles.parent}>
+
+      <View style={styles.teams}>
+      <Text style={styles.teama}>
+      {nameA}
+      </Text>
+
+      <Text style={styles.teamb}>
+      {nameB}
+      </Text>
+
+      </View>
+      <Image style={styles.vs}source={require('../assets/vsicon.png')}>
+      </Image>
+
+
+      <View style={styles.points}>
+
+      <Text style={styles.ascore}>
+        {totalScoreA}
+      </Text>
+      <Text style={styles.bscore}>
+        {totalScoreB}
+      </Text>
+
+
+      </View>
       <Container>
 
         <Content>
@@ -115,7 +392,7 @@ export default class MatchupScreen extends React.Component {
             <CardItem header>
             <Left>
               <Text>
-                {nameA}
+                {nameA + "'s Players"}
               </Text>
             </Left>
             <Right>
@@ -129,7 +406,7 @@ export default class MatchupScreen extends React.Component {
                     <Text> {player.firstName + " " + player.lastName} </Text>
                   </Left>
                   <Right>
-                    <Text>0</Text>
+                    <Text> {playerScoresA[index]} </Text>
                   </Right>
                 </CardItem>
               ))
@@ -139,7 +416,7 @@ export default class MatchupScreen extends React.Component {
             <CardItem header>
             <Left>
               <Text>
-                {nameB}
+                {nameB + "'s Players"}
               </Text>
             </Left>
             <Right>
@@ -153,7 +430,7 @@ export default class MatchupScreen extends React.Component {
                     <Text> {player.firstName + " " + player.lastName} </Text>
                   </Left>
                   <Right>
-                    <Text> 0 </Text>
+                    <Text> {playerScoresB[index]} </Text>
                   </Right>
                 </CardItem>
               ))
@@ -171,6 +448,7 @@ export default class MatchupScreen extends React.Component {
           />
         </Footer>
       </Container>
+      </View>
     );
   }
 }
@@ -197,5 +475,40 @@ const styles = StyleSheet.create({
   subText: {
     color: 'gray',
     fontSize: 28
+  },
+  parent: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: 'white'
+  },
+  teams: {
+    flexDirection: 'row',
+  },
+  points: {
+    flexDirection: 'row',
+  },
+  teamb: {
+
+    marginTop: 10,
+    marginLeft: '45%'
+  },
+  teama: {
+    marginLeft: '15%',
+    marginTop: 10
+  },
+  ascore: {
+    marginLeft: '15%',
+    fontSize: 30,
+    marginTop: 10
+
+  },
+  bscore: {
+    marginLeft: '50%',
+    fontSize: 30,
+    marginTop: 10
+
+  },
+  vs: {
+    marginLeft: '45%',
   }
 });
