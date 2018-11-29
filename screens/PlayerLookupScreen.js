@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button, ScrollView, Image, TouchableHighlight, TouchableOpacity, Switch, } from 'react-native';
 import { SearchableFlatList } from "react-native-searchable-list";
+import * as firebase from 'firebase';
 
 
 export default class PlayerLookupScreen extends React.Component {
@@ -9,14 +10,7 @@ export default class PlayerLookupScreen extends React.Component {
       this.state = {
           playerName: "",
           tableHead: ['Name', 'Team', 'Total Points'],
-          tableData: [
-            ['Joe Richards', 'DC Breeze', '13'],
-            ['Eric Miner', 'DC Breeze', '15'],
-            ['Francis Breton', 'Montreal Royal', '13'],
-            ['Miguel Goderre', 'Montreal Royal', '10'],
-            ['Simon Charette', 'Montreal Royal', '9'],
-            ['Shane Earley', 'San Jose Spiders', '16'],
-          ],
+          players: [],
           data: [
             { id: 1, name: 'Joe Richards', team: 'DC Breeze', points: '13'},
             { id: 2, name: 'Eric Miner', team: 'DC Breeze', points: '15'},
@@ -38,6 +32,20 @@ export default class PlayerLookupScreen extends React.Component {
           ignoreCase: true,
       }
   }
+  componentDidMount() {
+    var playersRef = firebase.database().ref('/players');
+    var playersList = [];
+    playersRef.once('value').then(snapshot => {
+      snapshot.forEach(item => {
+        playersList.push(item.val());
+      });
+      this.setState({ players: playersList });
+    })
+  }
+ 
+
+    
+
   handleTeamSearch() {
     this.setState({searchAttribute: "team"})
   }
@@ -50,11 +58,11 @@ export default class PlayerLookupScreen extends React.Component {
     const { data, searchTerm, searchAttribute, ignoreCase } = this.state;
     return (
 
-      <View style={{ flex: 1, backgroundColor: '#484f4f' }}>
+      <View style={{ flex: 1, }}>
         <View style={styles.pageContainer}>
           <View style={{paddingTop:50, alignItems:"center"}}>
 
-            <Text style={{fontWeight: "bold", color: 'white', padding: 10, fontSize: 20}}>Lookup Player</Text>
+            <Text style={{fontWeight: "bold", color: 'black', padding: 10, fontSize: 20}}>Lookup Player</Text>
             <View style={{paddingTop:10}} />
             <View style={{paddingTop:10}} />
           </View>
@@ -84,7 +92,7 @@ export default class PlayerLookupScreen extends React.Component {
               ignoreCase={ignoreCase}
               renderItem={({ item }) => (
                 <TouchableHighlight onPress={() => this.props.navigation.navigate("PlayerScreen")}>
-                  <Text style={styles.listItem}>{item.name}   {item.team}</Text>
+                  <Text style={styles.listItem}>{item.name}</Text>
                 </TouchableHighlight>
               )}
               keyExtractor={item => item.id}
@@ -101,9 +109,9 @@ export default class PlayerLookupScreen extends React.Component {
 const styles = StyleSheet.create({
   
   
-  pageContainer: { padding: 10, flex: 1, backgroundColor: '#484f4f' },
+  pageContainer: { padding: 10, flex: 1, },
   searchInputs: { flexDirection: "row" },
-  search: { flex: 8, marginBottom: 20, borderColor: "#D44744", borderBottomWidth: 3, padding: 10, backgroundColor:"#e8ecf2" },
+  search: { flex: 8, marginBottom: 20, borderColor: "#D44744", borderBottomWidth: 3, padding: 10, backgroundColor:"white",},
   listItem: { padding: 10, borderColor: "#f4cfce", borderWidth: 1, borderRadius: 10, margin: 2, backgroundColor: "#84a7d8" },
   info: { padding: 10, marginTop: 20, borderColor: "#f4cfce", borderWidth: 1 },
   row: { flexDirection: "row", backgroundColor: "#f4cfce" },
