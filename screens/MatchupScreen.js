@@ -49,6 +49,7 @@ export default class MatchupScreen extends React.Component {
     var matchupRef = firebase.database().ref('/league/' + currentLeague + '/matchups/week1/');
     matchupRef.once('value').then(snapshot => {
       snapshot.forEach(item => {
+        console.log(item.val().team_a);
         if (item.val().team_a == userID || item.val().team_b == userID) {
           this.setState({ teamA: item.val().team_a, teamB: item.val().team_b, scoreA: item.val().team_a_score, scoreB: item.val().team_b_score });
           this.setNames(item.val().team_a, item.val().team_b, currentLeague);

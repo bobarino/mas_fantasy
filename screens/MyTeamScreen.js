@@ -34,7 +34,6 @@ export default class MyTeamScreen extends React.Component {
 
 
   render() {
-    console.log(this.state.teamName);
     const { leagueName, players, teamName } = this.state;
       return (
         <ScrollView style={{ backgroundColor: 'white' }}>

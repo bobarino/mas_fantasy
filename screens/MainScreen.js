@@ -2,6 +2,7 @@ import React, { Component, } from 'react';
 import routeConfig from '../config/routeConfig';
 import { MainMenuButton } from "../components/MenuButton.js"
 import { StyleSheet, Text } from 'react-native';
+import { NavigationEvents } from 'react-navigation';
 import * as firebase from 'firebase';
 import { Container
        , Header
@@ -48,16 +49,29 @@ export default class MainScreen extends Component {
       }
     });
   }
+
+  // componentWillReceiveProps(nextProps) {
+  //   if (typeof(this.props.navigation.state.params) !== 'undefined') {
+  //     newLeague = this.props.navigation.state.params.newLeague;
+  //     console.log(newLeague)
+  //     this.state.leagueArr.push(newLeague);
+  //     this.setState({ leagueArr: leagueArr });
+  //   }
+  // }
   render() {
     const { currentUser } = this.state;
     const { Main, Register, Login, Loading, ...routes } = routeConfig;
     var currentLeagues = this.state.currentLeagues;
 
-    if (typeof(this.props.navigation.state.params) !== 'undefined') {
-      currentLeagues = this.props.navigation.state.params.curLeagues;
-    }
+    // if (typeof(this.props.navigation.state.params) !== 'undefined') {
+    //   newLeague = this.props.navigation.state.params.newLeague;
+    //   console.log(newLeague)
+    //   this.state.leagueArr.push(newLeague);
+    //   this.setState({ leagueArr: leagueArr });
+    // }
     return (
       <Container>
+      <NavigationEvents onDidFocus={() => this.componentDidMount()} />
         <Content>
           {
             this.state.leagueArr.map((currentLeague, index) => (

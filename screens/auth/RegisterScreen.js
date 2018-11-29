@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, Button, Alert } from 'react-native';
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import routeConfig from '../../config/routeConfig';
 import * as firebase from 'firebase';
@@ -16,7 +16,7 @@ export default class RegisterScreen extends React.Component {
         };
     }
 
-    onSignupPress = () => {
+    onSignupPress() {
         if (this.state.password !== this.state.passwordConfirm) {
             Alert.alert("Passwords do not match");
             return;
@@ -28,15 +28,16 @@ export default class RegisterScreen extends React.Component {
 
     render() {
         return (
-            <View style={{paddingTop:50, alignItems:"center"}}>
+           <ScrollView style={{ backgroundColor: 'white' }}>
+             <View style={{paddingTop:50, alignItems:"center"}}>
 
-                <Text>Sign Up</Text>
+                  <Text style={{color: 'black', padding: 10, fontSize: 24}}>Sign Up</Text>
                 <View style={{paddingTop:10}} />
 
-                <TextInput style={{width: 200, height: 40, borderWidth: 1}}
+                <TextInput style={{width: 200, height: 40, borderWidth: 1, backgroundColor: 'white'}}
                     value={this.state.email}
                     onChangeText={(text) => { this.setState({email: text}) }}
-                    placeholder="Email"
+                    placeholder=" Email"
                     keyboardType="email-address"
                     autoCapitalize="none"
                     autoCorrect={false}
@@ -44,10 +45,10 @@ export default class RegisterScreen extends React.Component {
 
                 <View style={{paddingTop:10}} />
 
-                <TextInput style={{width: 200, height: 40, borderWidth: 1}}
+                <TextInput style={{width: 200, height: 40, borderWidth: 1, backgroundColor: 'white'}}
                     value={this.state.password}
                     onChangeText={(text) => { this.setState({password: text}) }}
-                    placeholder="Password"
+                    placeholder=" Password"
                     secureTextEntry={true}
                     autoCapitalize="none"
                     autoCorrect={false}
@@ -55,10 +56,10 @@ export default class RegisterScreen extends React.Component {
 
                 <View style={{paddingTop:10}} />
 
-                <TextInput style={{width: 200, height: 40, borderWidth: 1}}
+                <TextInput style={{width: 200, height: 40, borderWidth: 1, backgroundColor: 'white'}}
                     value={this.state.passwordConfirm}
                     onChangeText={(text) => { this.setState({passwordConfirm: text}) }}
-                    placeholder="Password (confirm)"
+                    placeholder=" Password (confirm)"
                     secureTextEntry={true}
                     autoCapitalize="none"
                     autoCorrect={false}
@@ -66,12 +67,27 @@ export default class RegisterScreen extends React.Component {
 
                 <View style={{paddingTop:10}} />
 
-                <Button title="Register" onPress={this.onSignupPress} />
+                <TouchableOpacity
+                 style={styles.button}
+                 onPress={() => this.onSignupPress()}
+               >
+                 <Text style={styles.buttonText}> Register </Text>
+               </TouchableOpacity>
             </View>
+         </ScrollView>
         );
     }
 }
 
-const styles = StyleSheet.create({
-
+const styles = StyleSheet.create ({
+   buttonText: {
+     color: 'white',
+     fontSize: 20
+   },
+   button: {
+     alignItems: 'center',
+     backgroundColor: '#034f84',
+     padding: 20,
+     marginTop: 20
+   }
 });
