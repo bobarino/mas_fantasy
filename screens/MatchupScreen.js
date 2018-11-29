@@ -49,7 +49,6 @@ export default class MatchupScreen extends React.Component {
     var matchupRef = firebase.database().ref('/league/' + currentLeague + '/matchups/week1/');
     matchupRef.once('value').then(snapshot => {
       snapshot.forEach(item => {
-        console.log(item.val().team_a);
         if (item.val().team_a == userID || item.val().team_b == userID) {
           this.setState({ teamA: item.val().team_a, teamB: item.val().team_b, scoreA: item.val().team_a_score, scoreB: item.val().team_b_score });
           this.setNames(item.val().team_a, item.val().team_b, currentLeague);
@@ -107,20 +106,6 @@ export default class MatchupScreen extends React.Component {
 
   render() {
     const { teamA, teamB, currentLeague, nameA, nameB, playersA, playersB } = this.state;
-    let playerScoresA = [];
-    let playerScoresB = [];
-    let totalScoreA = 0;
-    let totalScoreB = 0;
-    for (var i = 0; i < playersA.length; i++) {
-      randomNr = Math.random() * 60 + 40;
-      let sA = parseInt(randomNr, 10);
-      playerScoresA.push(sA);
-      totalScoreA += sA;
-      randomNr = Math.random() * 60 + 40;
-      let sB = parseInt(randomNr, 10);
-      playerScoresB.push(sB);
-      totalScoreB += sB;
-    }
 
     return (
       <Container>
@@ -144,19 +129,11 @@ export default class MatchupScreen extends React.Component {
                     <Text> {player.firstName + " " + player.lastName} </Text>
                   </Left>
                   <Right>
-                    <Text>{playerScoresA[index]}</Text>
+                    <Text>0</Text>
                   </Right>
                 </CardItem>
               ))
             }
-            <CardItem>
-              <Left>
-                <Text> Total: </Text>
-              </Left>
-              <Right>
-                <Text>{totalScoreA}</Text>
-              </Right>
-            </CardItem>
           </Card>
           <Card>
             <CardItem header>
@@ -176,19 +153,11 @@ export default class MatchupScreen extends React.Component {
                     <Text> {player.firstName + " " + player.lastName} </Text>
                   </Left>
                   <Right>
-                    <Text>{playerScoresB[index]}</Text>
+                    <Text> 0 </Text>
                   </Right>
                 </CardItem>
               ))
             }
-            <CardItem>
-              <Left>
-                <Text> Total: </Text>
-              </Left>
-              <Right>
-                <Text>{totalScoreB}</Text>
-              </Right>
-            </CardItem>
           </Card>
         </Content>
         <Footer>
