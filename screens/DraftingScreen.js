@@ -122,13 +122,13 @@ componentDidMount() {
       this.setState({ matchupFlag: false })
     }
       return (
-        <ScrollView style={{ backgroundColor: '#484f4f' }}>
+        <ScrollView style={{ backgroundColor: 'white' }}>
           <View style={{paddingTop:50, alignItems:"center"}}>
 
-              <Text style={{fontWeight: "bold", color: 'white', padding: 10, fontSize: 30}}>Congratulations!</Text>
+              <Text style={{fontWeight: "bold", color: 'black', padding: 10, fontSize: 30}}>Congratulations!</Text>
 
               <View style={{paddingTop:10}} />
-              <Text style={{fontWeight: "bold", color: 'white', padding: 10, fontSize: 20}}>Autodraft Results:</Text>
+              <Text style={{color: 'black', padding: 10, fontSize: 24}}>Autodraft Results:</Text>
 
               <View style={{paddingTop:10}}>
               {
@@ -145,10 +145,10 @@ componentDidMount() {
               }
               </View>
 
-              <Text style={{fontWeight: "bold", color: 'white', padding: 10, fontSize: 20}}>Team Name</Text>
+              <Text style={{color: 'black', padding: 10, fontSize: 24}}>Team Name</Text>
               <TextInput style={{width: 200, height: 40, borderWidth: 1, backgroundColor: 'white'}}
                   onChangeText={(text) => { this.setState({teamName: text}) }}
-                  placeholder="Team Name"
+                  placeholder=" Team Name"
                   autoCorrect={false}
               />
 
@@ -168,12 +168,12 @@ const styles = StyleSheet.create ({
    container: {
       padding: 10,
       marginTop: 3,
-      backgroundColor: 'white',
+      backgroundColor: '#034f84',
       alignItems: 'center',
       width: width
    },
    text: {
-      color: 'black'
+      color: 'white'
    },
    buttonText: {
      color: 'white',

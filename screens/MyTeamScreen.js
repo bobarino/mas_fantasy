@@ -34,17 +34,16 @@ export default class MyTeamScreen extends React.Component {
 
 
   render() {
-    console.log(this.state.teamName);
     const { leagueName, players, teamName } = this.state;
       return (
-        <ScrollView style={{ backgroundColor: '#484f4f' }}>
+        <ScrollView style={{ backgroundColor: 'white' }}>
           <View style={{paddingTop:50, alignItems:"center"}}>
 
-              <Text style={{fontWeight: "bold", color: 'white', padding: 3, fontSize: 30}}>{teamName}</Text>
-              <Text style={{fontWeight: "bold", color: 'white', padding: 3, fontSize: 20}}>{leagueName}</Text>
+              <Text style={{color: 'black', padding: 3, fontSize: 30}}>{teamName}</Text>
+              <Text style={{color: 'black', padding: 3, fontSize: 24}}>{leagueName}</Text>
 
               <View style={{paddingTop:10}} />
-              <Text style={{fontWeight: "bold", color: 'white', padding: 10, fontSize: 20}}>Players:</Text>
+              <Text style={{color: 'black', padding: 10, fontSize: 24}}>Players:</Text>
 
               <View style={{paddingTop:10}}>
               {
@@ -70,12 +69,12 @@ const styles = StyleSheet.create ({
    container: {
       padding: 10,
       marginTop: 3,
-      backgroundColor: 'white',
+      backgroundColor: '#034f84',
       alignItems: 'center',
       width: width
    },
    text: {
-      color: 'black'
+      color: 'white'
    },
    buttonText: {
      color: 'white',

@@ -1,5 +1,4 @@
-import React, { Component, } from 'react';
-import routeConfig from '../config/routeConfig';
+import React from 'react';
 import { MainMenuButton } from "../components/MenuButton.js";
 import { StyleSheet } from 'react-native';
 import * as firebase from 'firebase';
@@ -27,47 +26,58 @@ import {
   AdMobRewarded
 } from 'expo';
 
-export default class LeagueScreen extends Component {
-  state = { currentUser: null };
+export default class LeagueScreen extends React.Component {
+  state = { currentLeague: null };
 
   componentDidMount() {
-    const { currentUser } = firebase.auth();
-    this.setState({ currentUser: currentUser});
-
-    //Sets first league as current league
-    var myLeaguesRef = firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/leagues');
-    var leagueArr = [];
-    myLeaguesRef.once('value').then(snapshot => {
-      snapshot.forEach(item => {
-        leagueArr.push(item.val().name);
-      });
-      if (leagueArr.length > 0) {
-        console.log("\nSetting LeagueArr state");
-        this.setState({ currentLeagues: leagueArr });
-      }
-    });
+    const league = this.props.navigation.state.params.currentLeague;
+    this.setState({ currentLeague: league });
+    // const { currentUser } = firebase.auth();
+    // this.setState({ currentUser: currentUser});
+    //
+    // //Sets first league as current league
+    // var myLeaguesRef = firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/leagues');
+    // var leagueArr = [];
+    // myLeaguesRef.once('value').then(snapshot => {
+    //   snapshot.forEach(item => {
+    //     leagueArr.push(item.val().name);
+    //   });
+    //   if (leagueArr.length > 0) {
+    //     console.log("\nSetting LeagueArr state");
+    //     this.setState({ currentLeagues: leagueArr });
+    //   }
+    // });
   }
   render() {
-    const { currentUser } = this.state;
-    const { Main, Register, Login, Loading, ...routes } = routeConfig;
-    var currentLeagues = this.state.currentLeagues;
+    const { currentLeague } = this.state;
+    // const { Main, Register, Login, Loading, ...routes } = routeConfig;
 
-    if (typeof(this.props.navigation.state.params) !== 'undefined') {
-      currentLeagues = this.props.navigation.state.params.curLeagues;
-    }
-      if (currentLeagues != null) {
-          leagueText = <Text style={{fontWeight: "bold", color: 'white', padding: 10}}>League: {currentLeagues[0]}</Text>
-      } else {
-          leagueText = <Text style={{fontWeight: "bold", color: 'white', padding: 10}}>No Leagues Joined</Text>
-      }
+    // if (typeof(this.props.navigation.state.params) !== 'undefined') {
+    //   currentLeagues = this.props.navigation.state.params.curLeagues;
+    // }
+    //   if (currentLeagues != null) {
+    //       leagueText = <Text style={{fontWeight: "bold", color: 'white', padding: 10}}>League: {currentLeagues[0]}</Text>
+    //   } else {
+    //       leagueText = <Text style={{fontWeight: "bold", color: 'white', padding: 10}}>No Leagues Joined</Text>
+    //   }
     return (
       <Container>
 
         <Content>
-          <MainMenuButton labelText="This Week"
-                          iconName="play"
-                          onPress={()=> this.props.navigation.navigate('RecentMatches')}
-          />
+
+        <ListItem icon onPress={()=> this.props.navigation.navigate('MyTeam', { currentLeague })}>
+          <Left>
+            <Icon active style={styles.icon_lg} type='FontAwesome' name="group"/>
+          </Left>
+          <Body>
+            <Text style={styles.mainText}> My Team </Text>
+          </Body>
+        </ListItem>
+
+        <MainMenuButton labelText="This Week"
+                        iconName="play"
+                        onPress={()=> this.props.navigation.navigate('RecentMatches')}
+        />
           <MainMenuButton labelText="Leaderboard"
                           iconName="list-ol"
                           onPress={()=> this.props.navigation.navigate('TeamStandings')}
@@ -105,18 +115,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0
   },
-  icon_lg: {
-    fontSize: 48,
-    width: 100,
-    height: 100,
-    justifyContent: "center",
-  },
-  mainText: {
-    color: 'black',
-    fontSize: 42
-  },
   subText: {
     color: 'gray',
     fontSize: 28
-  }
+  },
+  icon_lg: {
+    fontSize: 24
+  },
+  mainText: {
+    color: 'black',
+    fontSize: 24
+  },
 });

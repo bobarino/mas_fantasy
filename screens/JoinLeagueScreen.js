@@ -13,14 +13,14 @@ export default class JoinLeague extends React.Component {
   }
   render() {
       return (
-        <ScrollView style={{ backgroundColor: '#484f4f' }}>
+        <ScrollView style={{ backgroundColor: 'white' }}>
           <View style={{paddingTop:50, alignItems:"center"}}>
 
-              <Text style={{fontWeight: "bold", color: 'white', padding: 10, fontSize: 20}}>League Name</Text>
+              <Text style={{color: 'black', padding: 10, fontSize: 24}}>League Name</Text>
               <TextInput style={{width: 200, height: 40, borderWidth: 1, backgroundColor: 'white'}}
                   value={this.state.email}
                   onChangeText={(text) => { this.setState({leagueName: text}) }}
-                  placeholder="League Name"
+                  placeholder=" League Name"
                   autoCorrect={false}
               />
 
@@ -45,6 +45,6 @@ const styles = StyleSheet.create ({
      alignItems: 'center',
      backgroundColor: '#034f84',
      padding: 20,
-     marginTop: 15
+     marginTop: 20
    }
 })
