@@ -10,7 +10,7 @@ export default class PlayerLookupScreen extends React.Component {
       this.state = {
           playerName: "",
           tableHead: ['Name', 'Team', 'Total Points'],
-          players: [],
+          data1: [],
           data: [
             { id: 1, name: 'Joe Richards', team: 'DC Breeze', points: '13'},
             { id: 2, name: 'Eric Miner', team: 'DC Breeze', points: '15'},
@@ -35,12 +35,20 @@ export default class PlayerLookupScreen extends React.Component {
   componentDidMount() {
     var playersRef = firebase.database().ref('/players');
     var playersList = [];
+    var pList = [];
     playersRef.once('value').then(snapshot => {
       snapshot.forEach(item => {
         playersList.push(item.val());
       });
-      this.setState({ players: playersList });
-    })
+      pList = Object.keys(playersList).map(function(key) { 
+          return Object.keys(playersList[key]).map(function(z) {
+            return playersList[key][z];
+          });
+      }); 
+      console.log(playersList);
+      this.setState({ data1: pList });
+    });
+
   }
  
 
